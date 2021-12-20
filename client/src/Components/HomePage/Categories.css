@@ -1,0 +1,197 @@
+/* Mobile view */
+@media (max-width: 543px) {
+    .categoriesBox {
+        margin: 5px 0px;
+        padding: 5px;
+
+        max-width: 100%;
+        height: auto;
+
+        /* justify-content: center; */
+        display: flex;
+        flex-direction: row;
+        /* flex-wrap: wrap; */
+        overflow: scroll;
+        background-color: white;
+        /* border: solid 0.1px black; */
+        box-shadow: 1px 1px 2px 1px rgba(211, 210, 212, 0.582);
+    }
+
+    .categoriesCard {
+        margin: 9px auto 9px 7px;
+        padding: 1px;
+        /* display: block; */
+
+        width: 80px;
+        height: auto;
+        box-shadow: 1px 1px 2px 1px rgba(172, 171, 173, 0.644),
+            -1px -1px 2px 1px rgba(172, 171, 173, 0.644);
+        background-color: white;
+        border-radius: 15px;
+    }
+
+    .categoriesCard:hover {
+        background-color: rgba(209, 213, 218, 0.5);
+    }
+
+    .categoriesCard img {
+        margin: 0px;
+        padding: 0px;
+
+        width: 80px;
+        height: 100px;
+
+        object-fit: cover;
+        object-position: center;
+
+        border-radius: 3px;
+    }
+
+    .categoriesCard:hover img {
+        object-fit: fill;
+    }
+
+    .categoriesCard p {
+        margin: 0px;
+        padding: auto;
+
+        font-size: 8px;
+        font-family: sans-serif;
+        font-weight: bold;
+        height: 12px;
+        text-align: center;
+        color: rgba(0, 0, 0, 0.842);
+    }
+}
+
+/* for tablet view */
+@media (min-width: 544px) {
+    .categoriesBox {
+        margin: 0px;
+        padding: 7px;
+
+        max-width: 100%;
+        height: auto;
+        /* justify-items: center; */
+        justify-content: center;
+        display: flex;
+        flex-direction: row;
+        /* flex-wrap: wrap; */
+        overflow: scroll;
+        background-color: white;
+        /* border: solid 0.1px black; */
+        box-shadow: 1px 1px 2px 1px rgba(211, 210, 212, 0.582);
+    }
+
+    .categoriesCard {
+        margin: 9px 10px;
+        padding: 1px;
+        display: block;
+
+        width: 120px;
+        height: auto;
+        box-shadow: 1px 1px 2px 1px rgba(172, 171, 173, 0.644),
+            -1px -1px 2px 1px rgba(172, 171, 173, 0.644);
+        background-color: white;
+        border-radius: 15px;
+    }
+
+    .categoriesCard:hover {
+        background-color: rgba(209, 213, 218, 0.5);
+    }
+
+    .categoriesCard img {
+        margin: 0px;
+        padding: 0px;
+
+        width: 120px;
+        height: 150px;
+
+        object-fit: cover;
+        object-position: center;
+
+        border-radius: 3px;
+    }
+
+    .categoriesCard:hover img {
+        object-fit: fill;
+    }
+
+    .categoriesCard p {
+        margin: auto;
+        padding: 3px;
+
+        font-size: 13px;
+        font-family: sans-serif;
+        font-weight: bold;
+
+        text-align: center;
+        color: rgba(0, 0, 0, 0.842);
+    }
+}
+
+/* Desktop styling */
+@media (min-width: 1020px) {
+    .categoriesBox {
+        margin: 15px 0px;
+        padding: 7px;
+
+        max-width: 100%;
+        height: auto;
+        /* justify-items: center; */
+        justify-content: center;
+        display: flex;
+        flex-direction: row;
+        flex-wrap: wrap;
+        background-color: white;
+        /* border: solid 0.1px black; */
+        box-shadow: 1px 1px 2px 1px rgba(211, 210, 212, 0.582);
+    }
+
+    .categoriesCard {
+        margin: 9px 10px;
+        padding: 1px;
+        display: block;
+
+        width: 140px;
+        height: auto;
+        box-shadow: 1px 1px 2px 1px rgba(172, 171, 173, 0.644),
+            -1px -1px 2px 1px rgba(172, 171, 173, 0.644);
+        background-color: white;
+        border-radius: 15px;
+    }
+
+    .categoriesCard:hover {
+        box-shadow: 1px 1px 2px 1px rgba(172, 171, 173, 0.904);
+        background-color: rgba(209, 213, 218, 0.5);
+    }
+
+    .categoriesCard img {
+        margin: 0px;
+        padding: 0px;
+
+        width: 140px;
+        height: 150px;
+
+        object-fit: cover;
+        object-position: center;
+
+        border-radius: 3px;
+    }
+
+    .categoriesCard:hover img {
+        object-fit: fill;
+    }
+
+    .categoriesCard p {
+        margin: auto;
+        padding: 3px;
+
+        font-size: 13px;
+        font-family: sans-serif;
+        font-weight: bold;
+
+        text-align: center;
+        color: rgba(0, 0, 0, 0.842);
+    }
+}
