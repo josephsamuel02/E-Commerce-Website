@@ -20,8 +20,10 @@ const Product = () => {
     const product = [
         {
             productId: theProducts._id,
-            quantity: quantity,
+            title: theProducts.title,
             image: theProducts.image,
+            price: theProducts.price,
+            quantity: quantity,
         },
     ];
     const [totalcout, settotalcout] = useState(0);

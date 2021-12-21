@@ -7,11 +7,11 @@ import { GetCart } from "../../store/actions/Cart";
 // import { BsTrash } from "react-icons/bs";
 
 const Cart = () => {
-    const cariItems = useSelector((state) => state.GetCart);
+    const cartItems = useSelector((state) => state.GetCart);
     const dispatch = useDispatch();
 
     useEffect(() => dispatch(GetCart()), []);
-    console.log(cariItems);
+    console.log(cartItems);
     return (
         <div id="cartpage">
             <IconContext.Provider
@@ -20,19 +20,29 @@ const Cart = () => {
                     size: "17px",
                 }}
             >
-                <div className="cartCard">
-                    <div className="productimage">
-                        <img src="photos/laptop.jpg" alt="laptop" />
-                    </div>
-                    <div className="itemdetails">
-                        <h3 className="productname">HP Laptop</h3>
+                {cartItems
+                    ? cartItems.map((item) =>
+                          item.product.map((i) => (
+                              <div className="cartCard" key={i._id}>
+                                  <div className="productimage">
+                                      <img src={i.image} alt="laptop" />
+                                  </div>
+                                  <div className="itemdetails">
+                                      <h3 className="productname">{i.title}</h3>
 
-                        <h3 className="productprice">N 300,000</h3>
+                                      <h3 className="productprice">
+                                          {i.price * i.quantity}{" "}
+                                      </h3>
 
-                        <h3 className="quantity">Quantity: 3</h3>
-                    </div>
-                    <h5 id="removeItem">{/* <BsTrash /> */} remove</h5>
-                </div>
+                                      <h3 className="quantity">
+                                          Quantity:{i.quantity}
+                                      </h3>
+                                  </div>
+                                  <button id="removeItem">remove</button>
+                              </div>
+                          ))
+                      )
+                    : null}
 
                 <div className="cartCard">
                     <div className="productimage">

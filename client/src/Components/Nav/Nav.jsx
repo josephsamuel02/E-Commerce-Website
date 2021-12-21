@@ -3,12 +3,15 @@ import { MdShoppingCart } from "react-icons/md";
 import { useState, useEffect } from "react";
 import { Link } from "react-router-dom";
 import { useSelector, useDispatch } from "react-redux";
+import { GetCart } from "../../store/actions/Cart";
 
 const Nav = () => {
-    const theCount = useSelector((state) => state.CartQuantity);
-    const [cartCount, setCartCount] = useState(theCount);
+    const theCount = useSelector((state) => state.GetCart.length);
+    const changeAlart = useSelector((state) => state.AddToCart);
 
-    useEffect(() => setCartCount(theCount), [theCount]);
+    const dispatch = useDispatch();
+
+    useEffect(() => dispatch(GetCart()), [changeAlart]);
 
     return (
         <div className="nav">
@@ -33,8 +36,7 @@ const Nav = () => {
             <Link to="/cart">
                 <h1 id="CartIcon">
                     <MdShoppingCart />
-                    {/* {cartCount ? <span>{cartCount}</span> : null} */}
-                    {cartCount > 0 ? <span></span> : null}
+                    {theCount > 0 ? <span>{theCount}</span> : null}
                 </h1>
             </Link>
         </div>
