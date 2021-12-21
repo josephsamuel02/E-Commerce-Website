@@ -21,6 +21,7 @@ const Product = () => {
         {
             productId: theProducts._id,
             quantity: quantity,
+            image: theProducts.image,
         },
     ];
     const [totalcout, settotalcout] = useState(0);

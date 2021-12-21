@@ -1,7 +1,7 @@
 import axios from "axios";
-
+// ADD PRODUCTS TO CART
 const token =
-    "Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjYxYWE0Njk5MTFiNzgwNzc3NjY4OWQ0NCIsImlzQWRtaW4iOnRydWUsImlhdCI6MTYzOTc3MzMxMCwiZXhwIjoxNjQwMDMyNTEwfQ.uL4u8F4W1Py8vndjsOsF3CcEbiTo9ypOpx-Tlj1um9U";
+    "Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjYxYWE0Njk5MTFiNzgwNzc3NjY4OWQ0NCIsImlzQWRtaW4iOnRydWUsImlhdCI6MTY0MDA3NjY3NywiZXhwIjoxNjQwMzM1ODc3fQ.L0bKe7ixrwDsSbXUVeI6sP2ewcHpymytmodNK9-nLME";
 
 const userId = "9ny48xxj4";
 const addtocart = async (product) => {
@@ -33,10 +33,23 @@ export const AddToCart = (product) => ({
     payload: addtocart(product),
 });
 
-// export const GetCart = () => ({
-//     type: "GET_CART",
-//     payload: getcart(),
-// });
+// GET ALL CART PRODUCTS
+
+const cartitems = async () => {
+    try {
+        const response = await axios.get(
+            `http://localhost:8000/cart/${userId}`
+        );
+        return response.data;
+    } catch (err) {
+        throw err;
+    }
+};
+
+export const GetCart = () => ({
+    type: "GET_CART",
+    payload: cartitems(),
+});
 
 const addQuantity = (q) => {
     const b = q + 1;

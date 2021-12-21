@@ -42,28 +42,28 @@ const HomePageProducts = () => {
                     <h3 className="name">Head Set</h3>
                     <p className="price">N50,00.00</p>
                 </div>
-            </div>{" "}
+            </div>
             <div className="productsCard">
                 <img src="photos/Musical.png" alt="" />
                 <div className="detail">
                     <h3 className="name">Head Set</h3>
                     <p className="price">N50,00.00</p>
                 </div>
-            </div>{" "}
+            </div>
             <div className="productsCard">
                 <img src="photos/Musical.png" alt="" />
                 <div className="detail">
                     <h3 className="name">Head Set</h3>
                     <p className="price">N50,00.00</p>
                 </div>
-            </div>{" "}
+            </div>
             <div className="productsCard">
                 <img src="photos/Musical.png" alt="" />
                 <div className="detail">
                     <h3 className="name">Head Set</h3>
                     <p className="price">N50,00.00</p>
                 </div>
-            </div>{" "}
+            </div>
             <div className="productsCard">
                 <img src="photos/Musical.png" alt="" />
                 <div className="detail">

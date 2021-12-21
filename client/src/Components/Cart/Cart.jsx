@@ -1,7 +1,17 @@
 import "./Cart.css";
 import { IconContext } from "react-icons";
-import { BsTrash } from "react-icons/bs";
+import { useEffect, useState } from "react";
+import { useDispatch, useSelector } from "react-redux";
+import { GetCart } from "../../store/actions/Cart";
+
+// import { BsTrash } from "react-icons/bs";
+
 const Cart = () => {
+    const cariItems = useSelector((state) => state.GetCart);
+    const dispatch = useDispatch();
+
+    useEffect(() => dispatch(GetCart()), []);
+    console.log(cariItems);
     return (
         <div id="cartpage">
             <IconContext.Provider
