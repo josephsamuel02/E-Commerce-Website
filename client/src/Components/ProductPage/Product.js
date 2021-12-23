@@ -4,34 +4,29 @@ import { useParams } from "react-router-dom";
 // import { Link } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
 import { AddToCart } from "../../store/actions/Cart";
-import { CartQuantity } from "../../store/actions/Cart";
 
 import { SingleProduct } from "../../store/actions/SingleProduct";
 
 const Product = () => {
     const theProducts = useSelector((state) => state.SingleProduct);
-    const cartCount = useSelector((state) => state.CartQuantity);
     const dispatch = useDispatch();
 
     const [quantity, setQuantity] = useState(1);
     const inquan = (add) => {
         quantity + add < 1 ? setQuantity(1) : setQuantity(quantity + add);
     };
-    const product = [
-        {
-            productId: theProducts._id,
-            title: theProducts.title,
-            image: theProducts.image,
-            price: theProducts.price,
-            quantity: quantity,
-        },
-    ];
+    const product = {
+        userId: "9ny48xxj4",
+        productId: theProducts._id,
+        title: theProducts.title,
+        image: theProducts.image,
+        price: theProducts.price,
+        quantity: quantity,
+    };
+
     const [totalcout, settotalcout] = useState(0);
     const addtocart = () => {
         dispatch(AddToCart(product));
-        dispatch(CartQuantity(totalcout));
-        settotalcout(cartCount);
-        console.log(cartCount);
     };
     const { id } = useParams();
     useEffect(() => {

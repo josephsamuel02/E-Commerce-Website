@@ -36,7 +36,7 @@ const Nav = () => {
             <Link to="/cart">
                 <h1 id="CartIcon">
                     <MdShoppingCart />
-                    {theCount > 0 ? <span>{theCount}</span> : null}
+                    {theCount ? theCount > 0 && <span>{theCount}</span> : ""}
                 </h1>
             </Link>
         </div>

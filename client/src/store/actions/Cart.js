@@ -1,17 +1,16 @@
 import axios from "axios";
-// ADD PRODUCTS TO CART
-const token =
-    "Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjYxYWE0Njk5MTFiNzgwNzc3NjY4OWQ0NCIsImlzQWRtaW4iOnRydWUsImlhdCI6MTY0MDA3NjY3NywiZXhwIjoxNjQwMzM1ODc3fQ.L0bKe7ixrwDsSbXUVeI6sP2ewcHpymytmodNK9-nLME";
 
-const userId = "9ny48xxj4";
+const token =
+    "Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjYxYWE0Njk5MTFiNzgwNzc3NjY4OWQ0NCIsImlzQWRtaW4iOnRydWUsImlhdCI6MTY0MDE2MzE1NiwiZXhwIjoxNjQwNDIyMzU2fQ.3emsZoBlcX7zGIzK00nkfmrGHPujuy6ZG541gOLwQvw";
+// const userId = "9ny48xxj4";
+
+// ADD PRODUCTS TO CART
 const addtocart = async (product) => {
     try {
         const response = await axios.post(
             "http://localhost:8000/cart",
-            {
-                userId: userId,
-                product: product,
-            },
+            product,
+
             {
                 headers: {
                     token: token,
@@ -35,7 +34,7 @@ export const AddToCart = (product) => ({
 
 // GET ALL CART PRODUCTS
 
-const cartitems = async () => {
+const cartitems = async (userId) => {
     try {
         const response = await axios.get(
             `http://localhost:8000/cart/${userId}`
@@ -46,17 +45,34 @@ const cartitems = async () => {
     }
 };
 
-export const GetCart = () => ({
+export const GetCart = (userId) => ({
     type: "GET_CART",
-    payload: cartitems(),
+    payload: cartitems(userId),
 });
 
-const addQuantity = (q) => {
-    const b = q + 1;
-    return b;
+// UPDATE CART PRODUCT
+
+const updatecart = async (product, productId) => {
+    try {
+        const response = await axios.put(
+            `http://localhost:8000/cart/${productId}`,
+            {
+                quantity: product,
+            },
+            {
+                headers: {
+                    token: token,
+                },
+            }
+        );
+
+        return response.data;
+    } catch (err) {
+        throw err;
+    }
 };
 
-export const CartQuantity = (q) => ({
-    type: "CART_QUANTITY",
-    payload: addQuantity(q),
+export const UpdateCart = (product, productId) => ({
+    type: "UPDATE_CART",
+    payload: updatecart(product, productId),
 });

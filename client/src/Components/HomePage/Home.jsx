@@ -8,10 +8,8 @@ const Home = () => {
             <div className="ctegorylist">
                 <span>Find: </span>
 
-                <select name="filter" id="category">
-                    <option selected disabled>
-                        categories
-                    </option>
+                <select name="filter" id="category" defaultValue={"categories"}>
+                    <option disabled>categories</option>
                     <option value="foodStuffs">Food Ftuffs </option>
                     <option value="vegitsblesandspices">
                         Fegitsbles and Spices
@@ -21,7 +19,7 @@ const Home = () => {
                     <option value="Accessories">Computers </option>
                     <option value="oldest">Accessories</option>
                     <option value="Wears">Wears</option>
-                    <option value="pets">Pets</option>{" "}
+                    <option value="pets">Pets</option>
                 </select>
             </div>
             <Categories />

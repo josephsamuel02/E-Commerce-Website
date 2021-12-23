@@ -18,9 +18,9 @@ export const GetCart = (state = [], action) => {
     }
 };
 
-export const CartQuantity = (state = [], action) => {
+export const UpdateCart = (state = [], action) => {
     switch (action.type) {
-        case "CART_QUANTITY":
+        case "UPDATE_CART":
             return action.payload;
 
         default:

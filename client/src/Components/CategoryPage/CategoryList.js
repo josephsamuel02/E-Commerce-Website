@@ -35,29 +35,29 @@ const CategoryList = () => {
         quantity + add < 1 ? setQuantity(1) : setQuantity(quantity + add);
     };
 
-    const [showActions, setShowActions] = useState(false);
-    const showbtn = () => {
-        setShowActions(true);
-    };
+    // const [showActions, setShowActions] = useState(false);
+    // const showbtn = () => {
+    //     setShowActions(true);
+
+    // };
     // const product = [
     //     {
     //         productId: theProducts._id,
     //         quantity: quantity,
     //     },
     // ];
-    const [totalcout, settotalcout] = useState(0);
-    const addtocart = (id) => {
+
+    const addtocart = (id, title, image, price) => {
         dispatch(
             AddToCart([
                 {
                     productId: id,
-                    quantity: quantity,
+                    title: title,
+                    image: image,
+                    price: price,
                 },
             ])
         );
-
-        dispatch(CartQuantity(totalcout));
-        settotalcout(cartCount);
     };
 
     useEffect(() => {
@@ -71,7 +71,12 @@ const CategoryList = () => {
             <div className="filterBox">
                 <h4>Sort Products:</h4>
 
-                <select name="filter" id="filter" onChange={handleFilter}>
+                <select
+                    name="filter"
+                    defaultValue={"options"}
+                    id="filter"
+                    onChange={handleFilter}
+                >
                     <option disabled>options</option>
                     <option value="newest">newest</option>
                     <option value="oldest">oldest</option>
@@ -86,8 +91,8 @@ const CategoryList = () => {
                           <div
                               className=" CstegoryCard"
                               key={item._id}
-                              onMouseOver={() => setShowActions(true)}
-                              onMouseLeave={() => setShowActions(false)}
+                              //   onMouseOver={() => setShowActions(true)}
+                              //   onMouseLeave={() => setShowActions(false)}
                           >
                               <Link to={`/product/${item._id}`}>
                                   <img src={item.image} alt="laptop" />
@@ -98,13 +103,18 @@ const CategoryList = () => {
                                   </div>
                               </Link>
                               <h3 className="actions">
-                                  {showActions && (
-                                      <button
-                                          onClick={() => addtocart(item._id)}
-                                      >
-                                          Add to cart
-                                      </button>
-                                  )}
+                                  <button
+                                      onClick={() =>
+                                          addtocart(
+                                              item._id,
+                                              item.title,
+                                              item.image,
+                                              item.price
+                                          )
+                                      }
+                                  >
+                                      Add to cart
+                                  </button>
                               </h3>
                           </div>
                       ))
@@ -115,35 +125,3 @@ const CategoryList = () => {
 };
 
 export default CategoryList;
-
-// <div className=" CstegoryCard">
-// <img src="photos/laptop.jpg" alt="laptop" />
-// <div className="Details">
-//     <h2>Item Name</h2>
-//     <p>$ Price</p>
-// </div>
-// </div>
-
-// <div className=" CstegoryCard">
-// <img src="photos/laptop.jpg" alt="laptop" />
-// <div className="Details">
-//     <h2>Item NameItem NameItem NameItem NameItem Name</h2>
-//     <p>$ 200,000</p>
-// </div>
-// </div>
-
-// <div className=" CstegoryCard">
-// <img src="photos/laptop.jpg" alt="laptop" />
-// <div className="Details">
-//     <h2>Item Name</h2>
-//     <p>$ Price</p>
-// </div>
-// </div>
-
-// <div className=" CstegoryCard">
-// <img src="photos/laptop.jpg" alt="laptop" />
-// <div className="Details">
-//     <h2>Item NameItem NameItem NameItem NameItem Name</h2>
-//     <p>$ 200,000</p>
-// </div>
-// </div>

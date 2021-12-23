@@ -18,7 +18,9 @@ import Login from "./Components/Login";
 
 const App = () => {
     const user = true;
+
     return (
+        
         <div className="App">
             <Router>
                 <Nav />
