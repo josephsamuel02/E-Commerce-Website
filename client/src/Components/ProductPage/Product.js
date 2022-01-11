@@ -3,13 +3,16 @@ import { useEffect, useState } from "react";
 import { useParams } from "react-router-dom";
 // import { Link } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
-import { AddToCart } from "../../store/actions/Cart";
+import { AddToCart, GetCart } from "../../store/actions/Cart";
 
 import { SingleProduct } from "../../store/actions/SingleProduct";
 
 const Product = () => {
     const theProducts = useSelector((state) => state.SingleProduct);
     const dispatch = useDispatch();
+
+    // const theCount = useSelector((state) => state.GetCart.length);
+    const changeAlart = useSelector((state) => state.AddToCart);
 
     const [quantity, setQuantity] = useState(1);
     const inquan = (add) => {
@@ -27,10 +30,13 @@ const Product = () => {
     const [totalcout, settotalcout] = useState(0);
     const addtocart = () => {
         dispatch(AddToCart(product));
+        setTimeout(() => dispatch(GetCart(userId)), 500);
     };
     const { id } = useParams();
+    const userId = "9ny48xxj4";
     useEffect(() => {
         dispatch(SingleProduct(id));
+        dispatch(GetCart(userId));
     }, [dispatch, id]);
 
     return (

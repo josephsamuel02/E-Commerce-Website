@@ -29,7 +29,7 @@
         font-family: "Oswald", sans-serif;
         font-size: 18px;
         font-weight: lighter;
-        color: rgb(233, 121, 30);
+        color: tomato;
         cursor: pointer;
     }
 
@@ -68,7 +68,7 @@
         font-weight: lighter;
         font-size: 12px;
         color: white;
-        background-color: rgb(233, 121, 30);
+        background-color: tomato;
     }
 
     #logANDregisterBTN {
@@ -82,14 +82,14 @@
         padding: 0px 5px;
 
         outline: none;
-        border: solid 1.5px rgb(233, 121, 30);
+        border: solid 1.5px tomato;
         border-radius: 30px;
         height: 20px;
         /* width: 15px; */
         font-family: sans-serif;
         font-weight: bold;
         font-size: 8px;
-        color: rgb(233, 121, 30);
+        color: tomato;
         background-color: white;
     }
 
@@ -98,21 +98,21 @@
         padding: 0px 5px;
 
         outline: none;
-        border: solid 1.5px rgb(233, 121, 30);
+        border: solid 1.5px tomato;
         border-radius: 30px;
         height: 20px;
         /* width: 15px; */
         font-family: sans-serif;
         font-weight: bold;
         font-size: 8px;
-        color: rgb(233, 121, 30);
+        color: tomato;
         background-color: white;
     }
 
     #CartIcon {
         margin: 5px;
         padding: 3px;
-        color: rgb(233, 121, 30);
+        color: tomato;
         font-size: 25px;
     }
 
@@ -160,7 +160,7 @@
         font-family: "Oswald", sans-serif;
         font-size: 20px;
         font-weight: bold;
-        color: rgb(233, 121, 30);
+        color: tomato;
         cursor: pointer;
     }
 
@@ -199,7 +199,7 @@
         font-weight: lighter;
         font-size: 14px;
         color: white;
-        background-color: rgb(233, 121, 30);
+        background-color: tomato;
     }
 
     #logANDregisterBTN {
@@ -213,14 +213,14 @@
         padding: 0px 10px;
 
         outline: none;
-        border: solid 1.5px rgb(233, 121, 30);
+        border: solid 1.5px tomato;
         border-radius: 30px;
         height: 23px;
 
         font-family: sans-serif;
         font-weight: bold;
         font-size: 13px;
-        color: rgb(233, 121, 30);
+        color: tomato;
         background-color: white;
     }
 
@@ -229,21 +229,21 @@
         padding: 0px 10px;
 
         outline: none;
-        border: solid 1.5px rgb(233, 121, 30);
+        border: solid 1.5px tomato;
         border-radius: 30px;
         height: 23px;
 
         font-family: sans-serif;
         font-weight: bold;
         font-size: 13px;
-        color: rgb(233, 121, 30);
+        color: tomato;
         background-color: white;
     }
 
     #CartIcon {
         margin: 5px;
         padding: 3px;
-        color: rgb(233, 121, 30);
+        color: tomato;
         font-size: 25px;
     }
 
@@ -291,7 +291,7 @@
         font-family: "Oswald", sans-serif;
         font-size: 22px;
         /* font-weight: bold; */
-        color: rgb(233, 121, 30);
+        color: tomato;
         cursor: pointer;
     }
 
@@ -328,7 +328,7 @@
         font-weight: lighter;
         font-size: 15px;
         color: white;
-        background-color: rgb(233, 121, 30);
+        background-color: tomato;
     }
 
     #logANDregisterBTN {
@@ -342,14 +342,14 @@
         padding: 0px 15px;
 
         outline: none;
-        border: solid 1.5px rgb(233, 121, 30);
+        border: solid 1.5px tomato;
         border-radius: 30px;
         height: 23px;
 
         font-family: sans-serif;
         font-weight: lighter;
         font-size: 15px;
-        color: rgb(233, 121, 30);
+        color: tomato;
         background-color: white;
     }
 
@@ -358,21 +358,21 @@
         padding: 0px 15px;
 
         outline: none;
-        border: solid 1.5px rgb(233, 121, 30);
+        border: solid 1.5px tomato;
         border-radius: 30px;
         height: 23px;
 
         font-family: sans-serif;
         font-weight: lighter;
         font-size: 15px;
-        color: rgb(233, 121, 30);
+        color: tomato;
         background-color: white;
     }
 
     #CartIcon {
         margin: 5px;
         padding: 3px;
-        color: rgb(233, 121, 30);
+        color: tomato;
         font-size: 25px;
     }
 

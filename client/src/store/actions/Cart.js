@@ -1,7 +1,7 @@
 import axios from "axios";
 
 const token =
-    "Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjYxYWE0Njk5MTFiNzgwNzc3NjY4OWQ0NCIsImlzQWRtaW4iOnRydWUsImlhdCI6MTY0MDE2MzE1NiwiZXhwIjoxNjQwNDIyMzU2fQ.3emsZoBlcX7zGIzK00nkfmrGHPujuy6ZG541gOLwQvw";
+    "Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjYxYWE0Njk5MTFiNzgwNzc3NjY4OWQ0NCIsImlzQWRtaW4iOnRydWUsImlhdCI6MTY0MTkxMjc3OCwiZXhwIjoxNjQyMTcxOTc4fQ.yas9WdkZNF00r_glMxrBrUoPszy7VkSeLmIsa62Vtcw";
 // const userId = "9ny48xxj4";
 
 // ADD PRODUCTS TO CART

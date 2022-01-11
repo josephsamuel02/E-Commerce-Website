@@ -3,67 +3,69 @@ import "./Categories.css";
 import { Link } from "react-router-dom";
 const Categories = () => {
     return (
-        <>
+        <div>
             <div className="categoriesBox">
-                <Link to="/categoryList?category=foodstuffs">
-                    <div className="categoriesCard">
+                <div className="categoriesCard">
+                    <Link to="/categoryList?category=foodstuffs">
                         <img src="photos/measure foods.jpg" alt="" />
                         <p>Food Stuffs</p>
-                    </div>
-                </Link>
+                    </Link>
+                </div>
 
-                <Link to="/categoryList?category=packagedfoods">
-                    <div className="categoriesCard">
+                <div className="categoriesCard">
+                    <Link to="/categoryList?category=groceries">
                         <img src="photos/PackagedFoods.jpg" alt="" />
-                        <p>Packaged Foods</p>
-                    </div>
-                </Link>
-                <Link to="/categoryList?category=food">
-                    <div className="categoriesCard">
+                        <p>Groceries</p>
+                    </Link>
+                </div>
+
+                <div className="categoriesCard">
+                    <Link to="/categoryList?category=food">
                         <img src="photos/Baked food.jpg" alt="" />
                         <p>Baked Foods</p>
-                    </div>
-                </Link>
-                <Link to="/categoryList?category=vegesandspices">
-                    <div className="categoriesCard">
+                    </Link>
+                </div>
+
+                <div className="categoriesCard">
+                    <Link to="/categoryList?category=vegesandspices">
                         <img
                             src="photos/measure foods.jpg"
                             alt="Veges and Spices"
                         />
                         <p>Veges and Spices</p>
-                    </div>
-                </Link>
+                    </Link>
+                </div>
             </div>
 
             <div className="categoriesBox">
-                <Link to="/categoryList?category=cusmethics">
-                    <div className="categoriesCard">
+                <div className="categoriesCard">
+                    <Link to="/categoryList?category=cusmethics">
                         <img src="photos/Pets.jpg" alt="cusmethics" />
                         <p>Cusmethics</p>
-                    </div>
-                </Link>
-                <Link to="/categoryList?category=accesories">
-                    <div className="categoriesCard">
+                    </Link>
+                </div>
+                <div className="categoriesCard">
+                    <Link to="/categoryList?category=accesories">
                         <img src="photos/accesories.jpg" alt="" />
                         <p>Accesories</p>
-                    </div>
-                </Link>
+                    </Link>
+                </div>
 
-                <Link to="/categoryList?category=computers">
-                    <div className="categoriesCard">
+                <div className="categoriesCard">
+                    <Link to="/categoryList?category=computers">
                         <img src="photos/computers 1.jpg" alt="" />
                         <p>Computers</p>
-                    </div>
-                </Link>
+                    </Link>
+                </div>
 
-                <Link to="/categoryList?category=wears">
-                    <div className="categoriesCard">
+                <div className="categoriesCard">
+                    <Link to="/categoryList?category=wears">
                         <img src="photos/Wears.jpg" alt="" />
                         <p>Wears</p>
-                    </div>
-                </Link>
+                    </Link>
+                </div>
             </div>
-        </>
+        </div>
     );
 };
 

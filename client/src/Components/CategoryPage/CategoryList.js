@@ -7,13 +7,11 @@ import { Products } from "../../store/actions/Procucts";
 
 import { useDispatch, useSelector } from "react-redux";
 
-import { AddToCart, CartQuantity } from "../../store/actions/Cart";
+import { AddToCart, GetCart } from "../../store/actions/Cart";
 
 const CategoryList = () => {
     const theProducts = useSelector((state) => state.Products.products);
     const dispatch = useDispatch();
-
-    const cartCount = useSelector((state) => state.CartQuantity);
 
     const search = useLocation().search;
     const category = new URLSearchParams(search).get("category");
@@ -31,37 +29,30 @@ const CategoryList = () => {
     };
 
     const [quantity, setQuantity] = useState(1);
-    const inquan = (add) => {
-        quantity + add < 1 ? setQuantity(1) : setQuantity(quantity + add);
+
+    const handlechange = (e) => {
+        const q = e.target.value;
+        setQuantity(q);
+        console.log(q);
     };
 
-    // const [showActions, setShowActions] = useState(false);
-    // const showbtn = () => {
-    //     setShowActions(true);
-
-    // };
-    // const product = [
-    //     {
-    //         productId: theProducts._id,
-    //         quantity: quantity,
-    //     },
-    // ];
-
-    const addtocart = (id, title, image, price) => {
-        dispatch(
-            AddToCart([
-                {
-                    productId: id,
-                    title: title,
-                    image: image,
-                    price: price,
-                },
-            ])
-        );
+    const addtocart = (productId, title, image, price, quantity) => {
+        const prod = {
+            userId: "9ny48xxj4",
+            productId: productId,
+            title: title,
+            image: image,
+            price: price,
+            quantity: quantity,
+        };
+        dispatch(AddToCart(prod));
+        setTimeout(() => dispatch(GetCart(userId)), 500);
     };
 
+    const userId = "9ny48xxj4";
     useEffect(() => {
         dispatch(Products({}, 1, 4, category, filterdObj));
+        dispatch(GetCart(userId));
     }, [dispatch, category, filterdObj]);
 
     return (
@@ -103,15 +94,46 @@ const CategoryList = () => {
                                   </div>
                               </Link>
                               <h3 className="actions">
+                                  <h3 className="quantity">
+                                      <select
+                                          defaultValue={item.quantity}
+                                          onChange={(e) => handlechange(e)}
+                                      >
+                                          <option value={1}>1 </option>
+                                          <option value={2}>2</option>
+                                          <option value={3}>3</option>
+                                          <option value={4}>4</option>
+                                          <option value={5}>5</option>
+                                          <option value={6}>6</option>
+                                          <option value={7}>7</option>
+                                          <option value={8}>8</option>
+                                          <option value={9}>9</option>
+                                          <option value={10}>10</option>
+                                          <option value={11}>11</option>
+                                          <option value={12}>12</option>
+                                          <option value={13}>13</option>
+                                          <option value={14}>14</option>
+                                          <option value={15}>15</option>
+                                          <option value={16}>16</option>
+                                          <option value={17}>17</option>
+                                          <option value={18}>18</option>
+                                          <option value={19}>19</option>
+                                          <option value={20}>20</option>
+                                      </select>
+                                  </h3>
+
                                   <button
-                                      onClick={() =>
+                                      onClick={() => {
                                           addtocart(
                                               item._id,
                                               item.title,
                                               item.image,
-                                              item.price
-                                          )
-                                      }
+                                              item.price,
+                                              quantity
+                                          );
+
+                                          setQuantity(1);
+                                      }}
                                   >
                                       Add to cart
                                   </button>

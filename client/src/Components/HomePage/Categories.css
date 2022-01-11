@@ -1,4 +1,9 @@
 /* Mobile view */
+
+a {
+    text-decoration: none;
+}
+
 @media (max-width: 543px) {
     .categoriesBox {
         margin: 5px 0px;
@@ -7,22 +12,17 @@
         max-width: 100%;
         height: auto;
 
-        /* justify-content: center; */
         display: flex;
         flex-direction: row;
-        /* flex-wrap: wrap; */
-        overflow: scroll;
-        background-color: white;
-        /* border: solid 0.1px black; */
-        box-shadow: 1px 1px 2px 1px rgba(211, 210, 212, 0.582);
+        /* box-shadow: 1px 1px 2px 1px rgba(211, 210, 212, 0.582); */
     }
 
     .categoriesCard {
-        margin: 9px auto 9px 7px;
-        padding: 1px;
+        margin: auto;
+        padding: 0px;
         /* display: block; */
 
-        width: 80px;
+        width: 90px;
         height: auto;
         box-shadow: 1px 1px 2px 1px rgba(172, 171, 173, 0.644),
             -1px -1px 2px 1px rgba(172, 171, 173, 0.644);
@@ -38,17 +38,13 @@
         margin: 0px;
         padding: 0px;
 
-        width: 80px;
+        width: 90px;
         height: 100px;
 
         object-fit: cover;
         object-position: center;
 
-        border-radius: 3px;
-    }
-
-    .categoriesCard:hover img {
-        object-fit: fill;
+        border-radius: 10px;
     }
 
     .categoriesCard p {
@@ -72,21 +68,16 @@
 
         max-width: 100%;
         height: auto;
-        /* justify-items: center; */
         justify-content: center;
         display: flex;
         flex-direction: row;
-        /* flex-wrap: wrap; */
-        overflow: scroll;
         background-color: white;
-        /* border: solid 0.1px black; */
-        box-shadow: 1px 1px 2px 1px rgba(211, 210, 212, 0.582);
     }
 
     .categoriesCard {
-        margin: 9px 10px;
-        padding: 1px;
-        display: block;
+        margin: 5px auto;
+        padding: 0px;
+        display: flex;
 
         width: 120px;
         height: auto;
@@ -110,11 +101,7 @@
         object-fit: cover;
         object-position: center;
 
-        border-radius: 3px;
-    }
-
-    .categoriesCard:hover img {
-        object-fit: fill;
+        border-radius: 10px;
     }
 
     .categoriesCard p {
@@ -138,19 +125,15 @@
 
         max-width: 100%;
         height: auto;
-        /* justify-items: center; */
         justify-content: center;
         display: flex;
         flex-direction: row;
-        flex-wrap: wrap;
         background-color: white;
-        /* border: solid 0.1px black; */
-        box-shadow: 1px 1px 2px 1px rgba(211, 210, 212, 0.582);
     }
 
     .categoriesCard {
-        margin: 9px 10px;
-        padding: 1px;
+        margin: 10px auto;
+        padding: 0px;
         display: block;
 
         width: 140px;
@@ -176,11 +159,7 @@
         object-fit: cover;
         object-position: center;
 
-        border-radius: 3px;
-    }
-
-    .categoriesCard:hover img {
-        object-fit: fill;
+        border-radius: 10px;
     }
 
     .categoriesCard p {
