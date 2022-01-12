@@ -8,10 +8,16 @@ import { GetCart } from "../../store/actions/Cart";
 
 const Home = () => {
     const theCount = useSelector((state) => state.GetCart.length);
-    const changeAlart = useSelector((state) => state.AddToCart);
     const dispatch = useDispatch();
 
-    useEffect(() => dispatch(GetCart()), [changeAlart]);
+    const userId = "9ny48xxj4";
+    useEffect(
+        () =>
+            setTimeout(() => {
+                dispatch(GetCart(userId));
+            }, 500),
+        [dispatch]
+    );
 
     return (
         <div className="home">

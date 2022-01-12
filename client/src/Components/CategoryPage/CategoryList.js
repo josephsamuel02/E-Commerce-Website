@@ -33,7 +33,6 @@ const CategoryList = () => {
     const handlechange = (e) => {
         const q = e.target.value;
         setQuantity(q);
-        console.log(q);
     };
 
     const addtocart = (productId, title, image, price, quantity) => {
@@ -93,7 +92,7 @@ const CategoryList = () => {
                                       <p>{item.category}</p>
                                   </div>
                               </Link>
-                              <h3 className="actions">
+                              <div className="actions">
                                   <h3 className="quantity">
                                       <select
                                           defaultValue={item.quantity}
@@ -137,7 +136,7 @@ const CategoryList = () => {
                                   >
                                       Add to cart
                                   </button>
-                              </h3>
+                              </div>
                           </div>
                       ))
                     : null}

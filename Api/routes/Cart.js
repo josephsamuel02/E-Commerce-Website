@@ -42,9 +42,43 @@ router.delete("/:id", verifyTokenAndAuthorization, async (req, res) => {
     try {
         await Cart.findByIdAndDelete(req.params.id);
 
-        res.status(200).json("Cart has been delete successfuly");
+        res.status(200).json("Item has been delete successfuly");
     } catch (err) {
         res.status(500).json(err);
+    }
+});
+
+// GET USER CART SUMTOTAL
+router.get("/cartsum/:userId", async (req, res) => {
+    try {
+        // const cart = await Cart.find({ userId: req.params.userId });
+        // res.status(200).json(cart);
+        const userId = req.params.userId;
+        const cartSum = await Cart.aggregate([
+            {
+                $match: {
+                    $and: [{ userId: userId }],
+                },
+            },
+            {
+                $project: {
+                    price: 1,
+                    quantity: 1,
+                },
+            },
+            {
+                $group: {
+                    _id: userId,
+                    total: {
+                        $sum: { $multiply: ["$price", "$quantity"] },
+                    },
+                },
+            },
+        ]);
+
+        res.status(200).json(cartSum);
+    } catch (err) {
+        res.status(500).json("somthing went wrong");
     }
 });
 

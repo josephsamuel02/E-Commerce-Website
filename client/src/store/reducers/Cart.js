@@ -27,3 +27,23 @@ export const UpdateCart = (state = [], action) => {
             return state;
     }
 };
+
+export const CartSumTotal = (state = [], action) => {
+    switch (action.type) {
+        case "CART_SUM_TOTAL":
+            return action.payload;
+
+        default:
+            return state;
+    }
+};
+
+export const DeleteCart = (state = [], action) => {
+    switch (action.type) {
+        case "DELETE_CART":
+            return action.payload;
+
+        default:
+            return state;
+    }
+};
