@@ -32,29 +32,52 @@ router.post("/register", async (req, res) => {
 // LOGIN
 router.post("/login", async (req, res) => {
     try {
-        const user = await User.findOne({ username: req.body.username });
+        const user = await User.findOne({ email: req.body.email });
+        const userphone = await User.findOne({ phone: req.body.phone });
 
-        !user && res.status(401).json("Can't find user");
+        if (req.body.phone) {
+            const decpassword = Cryptojs.AES.decrypt(
+                userphone.password,
+                process.env.PASS_SEC
+            ).toString(Cryptojs.enc.Utf8);
 
-        const decpassword = Cryptojs.AES.decrypt(
-            user.password,
-            process.env.PASS_SEC
-        ).toString(Cryptojs.enc.Utf8);
+            decpassword !== req.body.password &&
+                res.status(401).json("incorrect credential(s)");
 
-        decpassword !== req.body.password &&
-            res.status(401).json("incorrect credential(s)");
+            const accesstoken = jwt.sign(
+                {
+                    id: userphone._id,
+                    isAdmin: userphone.isAdmin,
+                },
+                process.env.JWT_SEC_KEY,
+                { expiresIn: "3d" }
+            );
+            const { password, ...others } = userphone._doc;
 
-        const accesstoken = jwt.sign(
-            {
-                id: user._id,
-                isAdmin: user.isAdmin,
-            },
-            process.env.JWT_SEC_KEY,
-            { expiresIn: "3d" }
-        );
-        const { password, ...others } = user._doc;
+            res.status(200).json({ ...others, accesstoken });
+        } else if (req.body.email) {
+            const decpassword = Cryptojs.AES.decrypt(
+                user.password,
+                process.env.PASS_SEC
+            ).toString(Cryptojs.enc.Utf8);
 
-        res.status(200).json({ ...others, accesstoken });
+            decpassword !== req.body.password &&
+                res.status(401).json("incorrect credential(s)");
+
+            const accesstoken = jwt.sign(
+                {
+                    id: user._id,
+                    isAdmin: user.isAdmin,
+                },
+                process.env.JWT_SEC_KEY,
+                { expiresIn: "3d" }
+            );
+            const { password, ...others } = user._doc;
+
+            res.status(200).json({ ...others, accesstoken });
+        } else if (!req.body.phone && !req.body.email) {
+            res.status(401).json("Can't find user");
+        }
     } catch (err) {
         res.status(500).json(err);
     }

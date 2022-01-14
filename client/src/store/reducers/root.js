@@ -9,6 +9,7 @@ import {
     DeleteCart,
     CartSumTotal,
 } from "./Cart";
+import { LogIn } from "./User";
 
 const rootReducer = combineReducers({
     Products,
@@ -19,6 +20,7 @@ const rootReducer = combineReducers({
     UpdateCart,
     DeleteCart,
     CartSumTotal,
+    LogIn,
 });
 
 export default rootReducer;

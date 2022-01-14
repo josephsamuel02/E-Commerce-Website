@@ -1,6 +1,6 @@
 import "./Nav.css";
 import { MdShoppingCart } from "react-icons/md";
-import { useState, useEffect } from "react";
+import { useEffect } from "react";
 import { Link } from "react-router-dom";
 import { useSelector, useDispatch } from "react-redux";
 import { GetCart } from "../../store/actions/Cart";

@@ -17,10 +17,9 @@ import Register from "./Components/Register";
 import Login from "./Components/Login";
 
 const App = () => {
-    const user = true;
+    const user = false;
 
     return (
-        
         <div className="App">
             <Router>
                 <Nav />
