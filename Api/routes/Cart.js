@@ -68,7 +68,7 @@ router.get("/cartsum/:userId", async (req, res) => {
             },
             {
                 $group: {
-                    _id: userId,
+                    _id: "Default",
                     total: {
                         $sum: { $multiply: ["$price", "$quantity"] },
                     },

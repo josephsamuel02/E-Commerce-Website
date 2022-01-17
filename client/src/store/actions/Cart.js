@@ -1,9 +1,10 @@
 import axios from "axios";
+import { tkn } from "./User";
 
-const token =
-    "Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjYxYWRjZjAwY2IwZGJjMjNiNWNmODAzMyIsImlzQWRtaW4iOmZhbHNlLCJpYXQiOjE2NDI0Mjg1NDksImV4cCI6MTY0MjY4Nzc0OX0.C7YCpPliNK8qAy8Ued5l3ykikOoMn5iYVCKY4LZI2_E";
-// const userId = "9ny48xxj4";
+var token = "Guest";
+tkn ? (token = tkn) : (token = "False");
 
+console.log(token);
 // ADD PRODUCTS TO CART
 const addtocart = async (product) => {
     try {

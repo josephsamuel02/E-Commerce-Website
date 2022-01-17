@@ -8,7 +8,7 @@ import {
     DeleteCart,
     CartSumTotal,
 } from "../../store/actions/Cart";
-
+import { userId } from "../../store/actions/User";
 // import { BsTrash } from "react-icons/bs";
 
 const Cart = () => {
@@ -16,15 +16,16 @@ const Cart = () => {
     const cartSum = useSelector((state) => state.CartSumTotal);
     const dispatch = useDispatch();
 
+    const [figure, setFigure] = useState();
     const handlechange = (e, id) => {
         const q = e.target.value;
         dispatch(UpdateCart(q, id));
+        console.log(figure);
         setTimeout(() => {
             window.location.reload(true);
-        }, 500);
+        }, 1000);
     };
 
-    const userId = "9ny48xxj4";
     useEffect(() => dispatch(GetCart(userId)), [dispatch]);
 
     useEffect(() => dispatch(CartSumTotal(userId)), [dispatch]);
@@ -43,7 +44,10 @@ const Cart = () => {
                         <h3 className="quantity">
                             <select
                                 defaultValue={i.quantity}
-                                onChange={(e) => handlechange(e, i._id)}
+                                onChange={(e) => {
+                                    handlechange(e, i._id);
+                                    setFigure(e.target.value);
+                                }}
                             >
                                 <option value={1}>1 </option>
                                 <option value={2}>2</option>
@@ -77,7 +81,7 @@ const Cart = () => {
                         id="removeItem"
                         onClick={() => {
                             dispatch(DeleteCart(i._id));
-                            // window.location.reload(true);
+                            window.location.reload(true);
                         }}
                     >
                         remove

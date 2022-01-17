@@ -4,7 +4,7 @@ import { useParams } from "react-router-dom";
 // import { Link } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
 import { AddToCart, GetCart } from "../../store/actions/Cart";
-
+import { userId } from "../../store/actions/User";
 import { SingleProduct } from "../../store/actions/SingleProduct";
 
 const Product = () => {
@@ -19,7 +19,7 @@ const Product = () => {
         quantity + add < 1 ? setQuantity(1) : setQuantity(quantity + add);
     };
     const product = {
-        userId: "9ny48xxj4",
+        userId: userId,
         productId: theProducts._id,
         title: theProducts.title,
         image: theProducts.image,
@@ -32,8 +32,9 @@ const Product = () => {
         dispatch(AddToCart(product));
         setTimeout(() => dispatch(GetCart(userId)), 500);
     };
+
     const { id } = useParams();
-    const userId = "9ny48xxj4";
+
     useEffect(() => {
         dispatch(SingleProduct(id));
         dispatch(GetCart(userId));

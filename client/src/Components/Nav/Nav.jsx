@@ -4,14 +4,14 @@ import { useEffect } from "react";
 import { Link } from "react-router-dom";
 import { useSelector, useDispatch } from "react-redux";
 import { GetCart } from "../../store/actions/Cart";
-
+import { userId } from "../../store/actions/User";
 const Nav = () => {
     const theCount = useSelector((state) => state.GetCart.length);
     const changeAlart = useSelector((state) => state.AddToCart);
 
     const dispatch = useDispatch();
 
-    useEffect(() => dispatch(GetCart()), [changeAlart]);
+    useEffect(() => dispatch(GetCart(userId)), [changeAlart]);
 
     return (
         <div className="nav">

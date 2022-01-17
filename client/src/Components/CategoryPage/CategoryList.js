@@ -8,6 +8,7 @@ import { Products } from "../../store/actions/Procucts";
 import { useDispatch, useSelector } from "react-redux";
 
 import { AddToCart, GetCart } from "../../store/actions/Cart";
+import { userId } from "../../store/actions/User";
 
 const CategoryList = () => {
     const theProducts = useSelector((state) => state.Products.products);
@@ -37,7 +38,7 @@ const CategoryList = () => {
 
     const addtocart = (productId, title, image, price, quantity) => {
         const prod = {
-            userId: "9ny48xxj4",
+            userId: userId,
             productId: productId,
             title: title,
             image: image,
@@ -48,7 +49,6 @@ const CategoryList = () => {
         setTimeout(() => dispatch(GetCart(userId)), 500);
     };
 
-    const userId = "9ny48xxj4";
     useEffect(() => {
         dispatch(Products({}, 1, 4, category, filterdObj));
         dispatch(GetCart(userId));

@@ -5,12 +5,11 @@ import { useSelector, useDispatch } from "react-redux";
 import Categories from "./Categories.jsx";
 import HomePageProducts from "./HomePageProducts";
 import { GetCart } from "../../store/actions/Cart";
-
+import { userId } from "../../store/actions/User";
 const Home = () => {
     const theCount = useSelector((state) => state.GetCart.length);
     const dispatch = useDispatch();
 
-    const userId = "9ny48xxj4";
     useEffect(
         () =>
             setTimeout(() => {

@@ -5,17 +5,16 @@ import { Link } from "react-router-dom";
 import { useEffect, useState } from "react";
 import { HomeProducts } from "../../store/actions/HomeProducts";
 import { AddToCart, GetCart } from "../../store/actions/Cart";
-
+import { userId } from "../../store/actions/User";
 import { useDispatch, useSelector } from "react-redux";
 
 const HomePageProducts = () => {
     const theProducts = useSelector((state) => state.HomeProducts.products);
     const dispatch = useDispatch();
 
-    const userId = "9ny48xxj4";
     const addtocart = (productId, title, image, price, quantity) => {
         const prod = {
-            userId: "9ny48xxj4",
+            userId: userId,
             productId: productId,
             title: title,
             image: image,
