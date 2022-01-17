@@ -11,7 +11,7 @@ import {
 } from "./Cart";
 import { LogIn } from "./User";
 
-const rootReducer = combineReducers({
+export const rootReducer = combineReducers({
     Products,
     SingleProduct,
     HomeProducts,
@@ -22,5 +22,3 @@ const rootReducer = combineReducers({
     CartSumTotal,
     LogIn,
 });
-
-export default rootReducer;

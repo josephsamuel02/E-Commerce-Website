@@ -5,6 +5,7 @@ const jwt = require("jsonwebtoken");
 
 //REGISTER
 router.post("/register", async (req, res) => {
+    // use phone or email to verify instead
     const user = await User.findOne({ username: req.body.username });
 
     const newUser = new User({
@@ -32,17 +33,17 @@ router.post("/register", async (req, res) => {
 // LOGIN
 router.post("/login", async (req, res) => {
     try {
-        const user = await User.findOne({ email: req.body.email });
-        const userphone = await User.findOne({ phone: req.body.phone });
+        const user = await User.findOne({ email: req.body.user });
+        const userphone = await User.findOne({ phone: req.body.user });
 
-        if (req.body.phone) {
+        if (userphone) {
             const decpassword = Cryptojs.AES.decrypt(
                 userphone.password,
                 process.env.PASS_SEC
             ).toString(Cryptojs.enc.Utf8);
 
             decpassword !== req.body.password &&
-                res.status(401).json("incorrect credential(s)");
+                res.status(401).json("incorrect password");
 
             const accesstoken = jwt.sign(
                 {
@@ -55,14 +56,14 @@ router.post("/login", async (req, res) => {
             const { password, ...others } = userphone._doc;
 
             res.status(200).json({ ...others, accesstoken });
-        } else if (req.body.email) {
+        } else if (user) {
             const decpassword = Cryptojs.AES.decrypt(
                 user.password,
                 process.env.PASS_SEC
             ).toString(Cryptojs.enc.Utf8);
 
             decpassword !== req.body.password &&
-                res.status(401).json("incorrect credential(s)");
+                res.status(401).json("incorrect password");
 
             const accesstoken = jwt.sign(
                 {
@@ -75,7 +76,7 @@ router.post("/login", async (req, res) => {
             const { password, ...others } = user._doc;
 
             res.status(200).json({ ...others, accesstoken });
-        } else if (!req.body.phone && !req.body.email) {
+        } else if (!userphone && !user) {
             res.status(401).json("Can't find user");
         }
     } catch (err) {

@@ -77,7 +77,7 @@ const Cart = () => {
                         id="removeItem"
                         onClick={() => {
                             dispatch(DeleteCart(i._id));
-                            window.location.reload(true);
+                            // window.location.reload(true);
                         }}
                     >
                         remove

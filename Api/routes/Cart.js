@@ -7,7 +7,7 @@ const {
 
 const Cart = require("../models/Cart");
 
-//CREATE CART
+//ADD TO CART
 
 router.post("/", verifyToken, async (req, res) => {
     const newCart = new Cart(req.body);

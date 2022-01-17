@@ -1,7 +1,7 @@
 import axios from "axios";
 
 const token =
-    "Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjYxYWE0Njk5MTFiNzgwNzc3NjY4OWQ0NCIsImlzQWRtaW4iOnRydWUsImlhdCI6MTY0MTkxMjc3OCwiZXhwIjoxNjQyMTcxOTc4fQ.yas9WdkZNF00r_glMxrBrUoPszy7VkSeLmIsa62Vtcw";
+    "Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjYxYWRjZjAwY2IwZGJjMjNiNWNmODAzMyIsImlzQWRtaW4iOmZhbHNlLCJpYXQiOjE2NDI0Mjg1NDksImV4cCI6MTY0MjY4Nzc0OX0.C7YCpPliNK8qAy8Ued5l3ykikOoMn5iYVCKY4LZI2_E";
 // const userId = "9ny48xxj4";
 
 // ADD PRODUCTS TO CART
@@ -20,7 +20,6 @@ const addtocart = async (product) => {
 
         return {
             response: response.data,
-            // totalPrice: response.data.price,
         };
     } catch (err) {
         throw err;

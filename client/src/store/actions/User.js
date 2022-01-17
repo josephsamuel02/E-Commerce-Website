@@ -2,14 +2,13 @@ import axios from "axios";
 
 const token =
     "Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjYxYWE0Njk5MTFiNzgwNzc3NjY4OWQ0NCIsImlzQWRtaW4iOnRydWUsImlhdCI6MTY0MTkxMjc3OCwiZXhwIjoxNjQyMTcxOTc4fQ.yas9WdkZNF00r_glMxrBrUoPszy7VkSeLmIsa62Vtcw";
-// const userId = "9ny48xxj4";
 
 // GET CART SUMTOTAL
 
 const login = async (user) => {
     try {
-        const response = await axios.get(
-            `http://localhost:8000/auth/login`,
+        const response = await axios.post(
+            "http://localhost:8000/auth/login",
             user
         );
 

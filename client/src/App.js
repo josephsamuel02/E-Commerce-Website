@@ -6,6 +6,8 @@ import {
     Navigate,
 } from "react-router-dom";
 
+import { useSelector } from "react-redux";
+
 import Nav from "./Components/Nav/Nav.jsx";
 import Home from "./Components/HomePage/Home.jsx";
 import CategoryList from "./Components/CategoryPage/CategoryList";
@@ -17,7 +19,7 @@ import Register from "./Components/Register";
 import Login from "./Components/Login";
 
 const App = () => {
-    const user = false;
+    const user = useSelector((state) => state.LogIn.username);
 
     return (
         <div className="App">
