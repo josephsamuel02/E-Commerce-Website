@@ -19,7 +19,9 @@ import Register from "./Components/Register";
 import Login from "./Components/Login";
 
 const App = () => {
-    const user = useSelector((state) => state.LogIn.username);
+    const theuser = useSelector((state) => state.LogIn.username);
+    var user = "Guest";
+    theuser ? (user = theuser) : (user = false);
 
     return (
         <div className="App">
@@ -33,13 +35,23 @@ const App = () => {
                     <Route
                         path="/register"
                         element={
-                            user ? <Navigate replace to="/" /> : <Register />
+                            user !== "Guest" ? (
+                                <Navigate replace to="/" />
+                            ) : (
+                                <Register />
+                            )
                         }
                     />
 
                     <Route
                         path="/login"
-                        element={user ? <Navigate replace to="/" /> : <Login />}
+                        element={
+                            user !== "Guest" ? (
+                                <Navigate replace to="/" />
+                            ) : (
+                                <Login />
+                            )
+                        }
                     />
 
                     <Route path="/pay" element={<Pay />} />

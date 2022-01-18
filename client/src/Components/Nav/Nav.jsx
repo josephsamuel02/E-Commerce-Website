@@ -5,6 +5,7 @@ import { Link } from "react-router-dom";
 import { useSelector, useDispatch } from "react-redux";
 import { GetCart } from "../../store/actions/Cart";
 import { userId } from "../../store/actions/User";
+import { PURGE, persistStore, purge } from "redux-persist";
 const Nav = () => {
     const theCount = useSelector((state) => state.GetCart.length);
     const changeAlart = useSelector((state) => state.AddToCart);
@@ -13,10 +14,18 @@ const Nav = () => {
 
     useEffect(() => dispatch(GetCart(userId)), [changeAlart]);
 
+    const logUserOut = () => {
+        const persistor = persistStore();
+        persistor
+            .purge()
+            .then(() => persistor.flush())
+            .then(() => persistor.pause());
+    };
+
     return (
         <div className="nav">
             <Link to="/">
-                <div className="header">Home Store</div>
+                <div className="header">iRock.ng</div>
             </Link>
 
             <div className="search">
@@ -32,6 +41,10 @@ const Nav = () => {
                     <button className="registerBtn">Register</button>
                 </Link>
             </div>
+
+            <button className="logOut" onClick={() => logUserOut()}>
+                LoggOut
+            </button>
 
             <Link to="/cart">
                 <h1 id="CartIcon">

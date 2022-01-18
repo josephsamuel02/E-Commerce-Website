@@ -1,10 +1,9 @@
 import axios from "axios";
-import { tkn } from "./User";
+import { userId } from "./User";
 
 var token = "Guest";
-tkn ? (token = tkn) : (token = "False");
+userId.length > 3 ? (token = userId) : (token = "Guest");
 
-console.log(token);
 // ADD PRODUCTS TO CART
 const addtocart = async (product) => {
     try {

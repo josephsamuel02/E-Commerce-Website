@@ -2,14 +2,11 @@ import axios from "axios";
 
 // GET CART SUMTOTAL
 
-export const tkn = `Bearer ${
-    JSON.parse(JSON.parse(localStorage.getItem("persist:root")).LogIn)
-        .accesstoken
-}`;
-
-export const userId = `Bearer ${
+export var userId = `Bearer ${
     JSON.parse(JSON.parse(localStorage.getItem("persist:root")).LogIn)._id
 }`;
+
+// export const userId = "Guest";
 
 const login = async (user) => {
     try {
