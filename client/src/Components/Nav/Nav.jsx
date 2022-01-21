@@ -4,22 +4,18 @@ import { useEffect } from "react";
 import { Link } from "react-router-dom";
 import { useSelector, useDispatch } from "react-redux";
 import { GetCart } from "../../store/actions/Cart";
-import { userId } from "../../store/actions/User";
-import { PURGE, persistStore, purge } from "redux-persist";
 const Nav = () => {
     const theCount = useSelector((state) => state.GetCart.length);
     const changeAlart = useSelector((state) => state.AddToCart);
+    const userId = useSelector((state) => state.LogIn._id);
 
     const dispatch = useDispatch();
 
-    useEffect(() => dispatch(GetCart(userId)), [changeAlart]);
+    useEffect(() => userId && dispatch(GetCart(userId)), [dispatch]);
 
     const logUserOut = () => {
-        const persistor = persistStore();
-        persistor
-            .purge()
-            .then(() => persistor.flush())
-            .then(() => persistor.pause());
+        localStorage.removeItem("persist:root");
+        window.location.replace("/login");
     };
 
     return (
@@ -33,25 +29,43 @@ const Nav = () => {
 
                 <input type="button" value="search" className="searchBtn" />
             </div>
+
             <div id="logANDregisterBTN">
-                <Link to="/login">
-                    <button className="LoginBtn">Login</button>
-                </Link>
-                <Link to="/register">
-                    <button className="registerBtn">Register</button>
-                </Link>
+                {!userId && (
+                    <Link to="/login">
+                        <button id="login" className="userbtn">
+                            Login
+                        </button>
+                    </Link>
+                )}
+                {!userId && (
+                    <Link to="/register">
+                        <button id="register" className="userbtn">
+                            Register
+                        </button>
+                    </Link>
+                )}
+                {userId && (
+                    <button
+                        id="logOut"
+                        className="userbtn"
+                        onClick={() => logUserOut()}
+                    >
+                        LoggOut
+                    </button>
+                )}
             </div>
 
-            <button className="logOut" onClick={() => logUserOut()}>
-                LoggOut
-            </button>
-
-            <Link to="/cart">
-                <h1 id="CartIcon">
-                    <MdShoppingCart />
-                    {theCount ? theCount > 0 && <span>{theCount}</span> : ""}
-                </h1>
-            </Link>
+            {userId && (
+                <Link to="/cart">
+                    <h1 id="CartIcon">
+                        <MdShoppingCart />
+                        {theCount
+                            ? theCount > 0 && <span>{theCount}</span>
+                            : null}
+                    </h1>
+                </Link>
+            )}
         </div>
     );
 };

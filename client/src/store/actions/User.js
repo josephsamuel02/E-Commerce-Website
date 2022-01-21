@@ -1,27 +1,44 @@
 import axios from "axios";
 
 // GET CART SUMTOTAL
+// export const token = `Bearer ${
+//     JSON.parse(JSON.parse(localStorage.getItem("persist:root")).LogIn)
+//         .accesstoken
+// }`;
 
-export var userId = `Bearer ${
-    JSON.parse(JSON.parse(localStorage.getItem("persist:root")).LogIn)._id
-}`;
+export const userId = "Guest";
 
-// export const userId = "Guest";
-
-const login = async (user) => {
+const login = async (userin) => {
+    let date = new Date().toLocaleTimeString();
     try {
         const response = await axios.post(
             "http://localhost:8000/auth/login",
-            user
+            userin
         );
-
         return response.data;
     } catch (err) {
         throw err;
     }
 };
 
-export const LogIn = (user) => ({
+export const LogIn = (userin) => ({
     type: "GET_USER",
-    payload: login(user),
+    payload: login(userin),
+});
+
+const register = async (user) => {
+    try {
+        const response = await axios.post(
+            "http://localhost:8000/auth/register",
+            user
+        );
+        return response.data;
+    } catch (err) {
+        throw err;
+    }
+};
+
+export const RegisterUser = (user) => ({
+    type: "REGISTER_USER",
+    payload: register(user),
 });

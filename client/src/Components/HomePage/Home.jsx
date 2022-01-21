@@ -1,22 +1,19 @@
 import "./Home.css";
 
-import { useEffect } from "react";
-import { useSelector, useDispatch } from "react-redux";
 import Categories from "./Categories.jsx";
 import HomePageProducts from "./HomePageProducts";
-import { GetCart } from "../../store/actions/Cart";
-import { userId } from "../../store/actions/User";
 const Home = () => {
-    const theCount = useSelector((state) => state.GetCart.length);
-    const dispatch = useDispatch();
-
-    useEffect(
-        () =>
-            setTimeout(() => {
-                dispatch(GetCart(userId));
-            }, 500),
-        [dispatch]
-    );
+    let dateNow = new Date().getTime();
+    let LoginDate = Number(localStorage.getItem("iROkloginExp"));
+    if (!LoginDate) {
+        console.log("process");
+    } else if (LoginDate < dateNow) {
+        localStorage.removeItem("iROkloginExp");
+        localStorage.removeItem("persist:root");
+        window.location.replace("/login");
+    } else {
+        console.log("process");
+    }
 
     return (
         <div className="home">

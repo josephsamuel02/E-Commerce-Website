@@ -1,16 +1,15 @@
 import "./HomePageProducts.css";
-import { useLocation } from "react-router-dom";
 import { Link } from "react-router-dom";
 
-import { useEffect, useState } from "react";
+import { useEffect } from "react";
 import { HomeProducts } from "../../store/actions/HomeProducts";
 import { AddToCart, GetCart } from "../../store/actions/Cart";
-import { userId } from "../../store/actions/User";
 import { useDispatch, useSelector } from "react-redux";
 
 const HomePageProducts = () => {
     const theProducts = useSelector((state) => state.HomeProducts.products);
     const dispatch = useDispatch();
+    const userId = useSelector((state) => state.LogIn._id);
 
     const addtocart = (productId, title, image, price, quantity) => {
         const prod = {
@@ -22,12 +21,12 @@ const HomePageProducts = () => {
             quantity: quantity,
         };
         dispatch(AddToCart(prod));
-        setTimeout(() => dispatch(GetCart(userId)), 500);
+        setTimeout(() => userId && dispatch(GetCart(userId)), 500);
     };
 
     useEffect(() => {
         dispatch(HomeProducts({}, 1, 10));
-        dispatch(GetCart(userId));
+        userId && dispatch(GetCart(userId));
     }, [dispatch]);
 
     // GET MORE
@@ -49,19 +48,21 @@ const HomePageProducts = () => {
                                   <p className="price">{item.price}</p>
                               </div>
                           </Link>
-                          <button
-                              onClick={() =>
-                                  addtocart(
-                                      item._id,
-                                      item.title,
-                                      item.image,
-                                      item.price,
-                                      1
-                                  )
-                              }
-                          >
-                              ADD TO CART
-                          </button>
+                          {userId && (
+                              <button
+                                  onClick={() =>
+                                      addtocart(
+                                          item._id,
+                                          item.title,
+                                          item.image,
+                                          item.price,
+                                          1
+                                      )
+                                  }
+                              >
+                                  ADD TO CART
+                              </button>
+                          )}
                       </div>
                   ))
                 : null}

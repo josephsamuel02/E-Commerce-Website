@@ -2,7 +2,6 @@ import { rootReducer } from "./root";
 
 import { createStore, applyMiddleware, compose } from "redux";
 import promiseMiddleWare from "redux-promise";
-import thunk from "redux-thunk";
 import { persistStore, persistReducer } from "redux-persist";
 import storage from "redux-persist/lib/storage";
 

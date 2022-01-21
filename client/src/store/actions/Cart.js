@@ -1,8 +1,8 @@
 import axios from "axios";
-import { userId } from "./User";
+// import { token } from "./User";
 
-var token = "Guest";
-userId.length > 3 ? (token = userId) : (token = "Guest");
+// var tkn = token;
+// tkn != null > 3 ? (tkn = token) : (tkn = "Guest");
 
 // ADD PRODUCTS TO CART
 const addtocart = async (product) => {
@@ -13,7 +13,12 @@ const addtocart = async (product) => {
 
             {
                 headers: {
-                    token: token,
+                    token: `Bearer ${
+                        JSON.parse(
+                            JSON.parse(localStorage.getItem("persist:root"))
+                                .LogIn
+                        ).accesstoken
+                    }`,
                 },
             }
         );
@@ -60,7 +65,12 @@ const updatecart = async (q, productId) => {
             },
             {
                 headers: {
-                    token: token,
+                    token: `Bearer ${
+                        JSON.parse(
+                            JSON.parse(localStorage.getItem("persist:root"))
+                                .LogIn
+                        ).accesstoken
+                    }`,
                 },
             }
         );
@@ -103,7 +113,12 @@ const deletecart = async (id) => {
             `http://localhost:8000/cart/${id}`,
             {
                 headers: {
-                    token: token,
+                    token: `Bearer ${
+                        JSON.parse(
+                            JSON.parse(localStorage.getItem("persist:root"))
+                                .LogIn
+                        ).accesstoken
+                    }`,
                 },
             }
         );

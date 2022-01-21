@@ -11,6 +11,7 @@ router.post("/register", async (req, res) => {
     const newUser = new User({
         username: req.body.username,
         email: req.body.email,
+        phone: req.body.phone,
         password: Cryptojs.AES.encrypt(
             req.body.password,
             process.env.PASS_SEC
@@ -26,7 +27,7 @@ router.post("/register", async (req, res) => {
             res.status(500).json(err);
         }
     } else {
-        res.json("user already exist, try another username");
+        res.json("user already exist, use another info");
     }
 });
 
@@ -51,7 +52,7 @@ router.post("/login", async (req, res) => {
                     isAdmin: userphone.isAdmin,
                 },
                 process.env.JWT_SEC_KEY,
-                { expiresIn: "3d" }
+                { expiresIn: "5d" }
             );
             const { password, ...others } = userphone._doc;
 
@@ -71,7 +72,7 @@ router.post("/login", async (req, res) => {
                     isAdmin: user.isAdmin,
                 },
                 process.env.JWT_SEC_KEY,
-                { expiresIn: "3d" }
+                { expiresIn: "5d" }
             );
             const { password, ...others } = user._doc;
 

@@ -4,11 +4,11 @@ import { useParams } from "react-router-dom";
 // import { Link } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
 import { AddToCart, GetCart } from "../../store/actions/Cart";
-import { userId } from "../../store/actions/User";
 import { SingleProduct } from "../../store/actions/SingleProduct";
 
 const Product = () => {
     const theProducts = useSelector((state) => state.SingleProduct);
+    const userId = useSelector((state) => state.LogIn._id);
     const dispatch = useDispatch();
 
     // const theCount = useSelector((state) => state.GetCart.length);
@@ -30,14 +30,14 @@ const Product = () => {
     const [totalcout, settotalcout] = useState(0);
     const addtocart = () => {
         dispatch(AddToCart(product));
-        setTimeout(() => dispatch(GetCart(userId)), 500);
+        setTimeout(() => userId && dispatch(GetCart(userId)), 500);
     };
 
     const { id } = useParams();
 
     useEffect(() => {
         dispatch(SingleProduct(id));
-        dispatch(GetCart(userId));
+        userId && dispatch(GetCart(userId));
     }, [dispatch, id]);
 
     return (
@@ -53,12 +53,18 @@ const Product = () => {
                             <p>{theProducts.desc}</p>
                         </div>
                         <h3 className="price"> {theProducts.price}</h3>
-                        <h3 className="quantity">
-                            <button onClick={() => inquan(1)}>+</button>
-                            {quantity}
-                            <button onClick={() => inquan(-1)}>-</button>
-                        </h3>
-                        <button onClick={() => addtocart()}>Add to cart</button>
+                        {userId && (
+                            <h3 className="quantity">
+                                <button onClick={() => inquan(1)}>+</button>
+                                {quantity}
+                                <button onClick={() => inquan(-1)}>-</button>
+                            </h3>
+                        )}
+                        {userId && (
+                            <button onClick={() => addtocart()}>
+                                Add to cart
+                            </button>
+                        )}
                     </div>
                 </div>
             ) : null}

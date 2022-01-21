@@ -1,6 +1,5 @@
 import "./Cart.css";
-import { IconContext } from "react-icons";
-import { useEffect, useState } from "react";
+import { useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import {
     GetCart,
@@ -8,27 +7,24 @@ import {
     DeleteCart,
     CartSumTotal,
 } from "../../store/actions/Cart";
-import { userId } from "../../store/actions/User";
-// import { BsTrash } from "react-icons/bs";
 
 const Cart = () => {
     const cartItems = useSelector((state) => state.GetCart);
     const cartSum = useSelector((state) => state.CartSumTotal);
+    const userId = useSelector((state) => state.LogIn._id);
     const dispatch = useDispatch();
 
-    const [figure, setFigure] = useState();
     const handlechange = (e, id) => {
         const q = e.target.value;
         dispatch(UpdateCart(q, id));
-        console.log(figure);
         setTimeout(() => {
             window.location.reload(true);
         }, 1000);
     };
 
-    useEffect(() => dispatch(GetCart(userId)), [dispatch]);
+    useEffect(() => userId && dispatch(GetCart(userId)), [dispatch]);
 
-    useEffect(() => dispatch(CartSumTotal(userId)), [dispatch]);
+    useEffect(() => userId && dispatch(CartSumTotal(userId)), [dispatch]);
 
     return (
         <div id="cartpage">
@@ -46,7 +42,6 @@ const Cart = () => {
                                 defaultValue={i.quantity}
                                 onChange={(e) => {
                                     handlechange(e, i._id);
-                                    setFigure(e.target.value);
                                 }}
                             >
                                 <option value={1}>1 </option>
