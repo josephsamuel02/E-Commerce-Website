@@ -1,5 +1,8 @@
 import "./Cart.css";
-import { useEffect } from "react";
+import { useFormik } from "formik";
+import * as Yup from "yup";
+import { usePaystackPayment } from "react-paystack";
+import { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import {
     GetCart,
@@ -8,24 +11,97 @@ import {
     CartSumTotal,
 } from "../../store/actions/Cart";
 
+// const dotenv = require("dotenv").config();
+
 const Cart = () => {
     const cartItems = useSelector((state) => state.GetCart);
     const cartSum = useSelector((state) => state.CartSumTotal);
     const userId = useSelector((state) => state.LogIn._id);
+    const userinfo = useSelector((state) => state.LogIn);
     const dispatch = useDispatch();
-
+    const [cartSumStr, setCartSumStr] = useState();
+    const [displayPAyment, setDisplayPAyment] = useState(false);
+    const [giftcartForm, setGiftcartForm] = useState(false);
     const handlechange = (e, id) => {
         const q = e.target.value;
         dispatch(UpdateCart(q, id));
         setTimeout(() => {
-            window.location.reload(true);
-        }, 1000);
+            window.location.replace("/cart");
+        }, 200);
     };
 
     useEffect(() => userId && dispatch(GetCart(userId)), [dispatch]);
 
-    useEffect(() => userId && dispatch(CartSumTotal(userId)), [dispatch]);
+    useEffect(() => {
+        userId && dispatch(CartSumTotal(userId));
+    }, [dispatch, CartSumTotal]);
+    const [delvAdd, setDelvAdd] = useState();
 
+    const formik = useFormik({
+        initialValues: {
+            name: "",
+            email: "",
+            phone: "",
+            deleveryAddress: "",
+        },
+
+        validationSchema: Yup.object({
+            name: Yup.string()
+                .max(25, "name cannot exceed 25 characters")
+                .required("required"),
+            email: Yup.string().min(10, "check email "),
+            phone: Yup.string()
+                .required("required")
+                .max(12, "phone cannot exceed 12 characters")
+                .required("required"),
+            deleveryAddress: Yup.string()
+                .min(10, "address cannot be less than 10 characters")
+                .required("required"),
+        }),
+
+        onSubmit: (formik) => {
+            const giftConfig = {
+                username: formik.name,
+                reference: new Date().getTime().toString(),
+                email: formik.email,
+                phone: formik.phone,
+                amount: cartSumStr * 100,
+                deleveryAddress: formik.deleveryAddress,
+                publicKey: process.env.REACT_APP_PAYSTACK_PUB_KEY,
+            };
+
+            setConfig(giftConfig);
+            setTimeout(() => {
+                console.log(giftConfig);
+                initializePayment(onSuccess, onClose);
+            }, 500);
+        },
+    });
+
+    const userConfig = {
+        username: userinfo.username,
+        reference: new Date().getTime().toString(),
+        email: userinfo.email,
+        phone: userinfo.phone,
+        amount: cartSumStr * 100,
+        deleveryAddress: delvAdd,
+        publicKey: process.env.REACT_APP_PAYSTACK_PUB_KEY,
+    };
+    const [config, setConfig] = useState(userConfig);
+
+    const onSuccess = (reference) => {
+        // Implementation for whatever you want to do with reference and after success call.
+        console.log(reference);
+        console.log(config);
+    };
+
+    // you can call this function anything
+    const onClose = () => {
+        // implementation for  whatever you want to do when the Paystack dialog closed.
+        console.log("closed");
+    };
+
+    const initializePayment = usePaystackPayment(config);
     return (
         <div id="cartpage">
             {cartItems.map((i) => (
@@ -76,7 +152,7 @@ const Cart = () => {
                         id="removeItem"
                         onClick={() => {
                             dispatch(DeleteCart(i._id));
-                            window.location.reload(true);
+                            window.location.replace("/cart");
                         }}
                     >
                         remove
@@ -88,6 +164,123 @@ const Cart = () => {
                 cartSum.map((i) => <h3 key={i._id}>Total:{i.total}</h3>)}
             <br />
             <br />
+            {/* you must clck this button to be able to get user sumTotal its
+            important */}
+
+            {!displayPAyment && (
+                <button
+                    onClick={() => {
+                        setCartSumStr(cartSum[0].total);
+                        setDisplayPAyment(true);
+                        setGiftcartForm(false);
+
+                        setConfig(userConfig);
+                    }}
+                >
+                    Place Order
+                </button>
+            )}
+
+            {displayPAyment && (
+                <div>
+                    <ul>
+                        <li> {userinfo.username} </li>
+                        <li>Email Address: {userinfo.email}</li>
+                        <li>Phone: {userinfo.phone}</li>
+                        {cartSum &&
+                            cartSum.map((i) => (
+                                <li key={i._id}>Total: NGN {i.total}</li>
+                            ))}
+                        <p>Delevery adress</p>
+                        <input
+                            required
+                            type="text"
+                            id="first-name"
+                            onChange={(e) => setDelvAdd(e.target.value)}
+                        />
+                        <br />
+                        {delvAdd ? (
+                            <button
+                                onClick={() => {
+                                    initializePayment(onSuccess, onClose);
+                                }}
+                            >
+                                make payment
+                            </button>
+                        ) : (
+                            <button disabled>make payment</button>
+                        )}
+                    </ul>
+                </div>
+            )}
+
+            {!giftcartForm && (
+                <button
+                    onClick={() => {
+                        setCartSumStr(cartSum[0].total);
+                        setGiftcartForm(true);
+                        setDisplayPAyment(false);
+                    }}
+                >
+                    Gift this cart to someone
+                </button>
+            )}
+            {giftcartForm && (
+                <form onSubmit={formik.handleSubmit}>
+                    <input
+                        type="text"
+                        id="name"
+                        placeholder="Name"
+                        onChange={formik.handleChange}
+                        onBlur={formik.handleBlur}
+                        value={formik.values.name}
+                    />
+                    {formik.touched.name && formik.errors.name ? (
+                        <p>{formik.errors.name}</p>
+                    ) : null}
+                    <br /> <br />
+                    <input
+                        type="text"
+                        id="email"
+                        placeholder="Email"
+                        onChange={formik.handleChange}
+                        onBlur={formik.handleBlur}
+                        value={formik.values.email}
+                    />
+                    {formik.touched.email && formik.errors.email ? (
+                        <p>{formik.errors.email}</p>
+                    ) : null}
+                    <br /> <br />
+                    <input
+                        type="number"
+                        id="phone"
+                        placeholder="phone"
+                        onChange={formik.handleChange}
+                        onBlur={formik.handleBlur}
+                        value={formik.values.phone}
+                    />
+                    {formik.touched.phone && formik.errors.phone ? (
+                        <p>{formik.errors.phone}</p>
+                    ) : null}
+                    <br /> <br />
+                    <input
+                        type="text"
+                        id="deleveryAddress"
+                        placeholder="Delevery Address"
+                        onChange={formik.handleChange}
+                        onBlur={formik.handleBlur}
+                        value={formik.values.deleveryAddress}
+                    />
+                    {formik.touched.deleveryAddress &&
+                    formik.errors.deleveryAddress ? (
+                        <p>{formik.errors.deleveryAddress}</p>
+                    ) : null}
+                    <br /> <br />
+                    <br /> <br />
+                    <input type="submit" value="Send Gift" id="btn" />
+                    <br /> <br />
+                </form>
+            )}
         </div>
     );
 };
