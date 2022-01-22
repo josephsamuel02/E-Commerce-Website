@@ -10,6 +10,9 @@ import {
     CartSumTotal,
 } from "./Cart";
 import { LogIn, RegisterUser } from "./User";
+import { VerifyPayment } from "./Paystack";
+
+import { SendOrder } from "./Order";
 
 export const rootReducer = combineReducers({
     Products,
@@ -22,4 +25,6 @@ export const rootReducer = combineReducers({
     CartSumTotal,
     LogIn,
     RegisterUser,
+    VerifyPayment,
+    SendOrder,
 });

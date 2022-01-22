@@ -20,11 +20,10 @@
 
 // module.exports = router;
 
-const router = require("express").Router();
-const PayStack = require("paystack-node");
+// const PayStack = require("paystack-node");
 
-const SEC_KEY = process.env.PAYSTACK_SEC_KEY;
-const environment = process.env.NODE_ENV;
+// const SEC_KEY = process.env.PAYSTACK_SEC_KEY;
+// const environment = process.env.NODE_ENV;
 
 // const { body } = PayStack.chargeCard({
 //     card: {
@@ -37,6 +36,25 @@ const environment = process.env.NODE_ENV;
 //     amount: 15600000, // 156,000 Naira in kobo
 // });
 
+// const payment = await stripe.paymentIntents.create({
+//     amount: req.body.amount,
+//     currency: "usd",
+//     payment_method: req.body.tokenId,
+//     confirm: true,
+// });
+
 // PayStack.engageMock();
+const router = require("express").Router();
+
+router.get("/verify/:id", async (req, res) => {
+    try {
+        const payment =
+            await `https://api.paystack.co/transaction/verify/${req.params.id}`;
+
+        res.status(200).json(payment);
+    } catch (err) {
+        res.status(500).json(err);
+    }
+});
 
 module.exports = router;
