@@ -13,10 +13,9 @@ import Home from "./Components/HomePage/Home.jsx";
 import CategoryList from "./Components/CategoryPage/CategoryList";
 import Product from "./Components/ProductPage/Product";
 import Cart from "./Components/Cart/Cart";
-import Pay from "./Components/Paymentpage/Pay";
-import Successful from "./Components/Paymentpage/Successful";
 import Register from "./Components/Register";
 import Login from "./Components/Login";
+import Orderspage from "./Components/OrdersPage";
 
 const App = () => {
     const theuser = useSelector((state) => state.LogIn.username);
@@ -46,9 +45,7 @@ const App = () => {
                         }
                     />
 
-                    <Route path="/pay" element={<Pay />} />
-
-                    <Route path="/successful" element={<Successful />} />
+                    <Route path="/orders" element={<Orderspage />} />
 
                     <Route path="/cart" element={<Cart />} />
 
