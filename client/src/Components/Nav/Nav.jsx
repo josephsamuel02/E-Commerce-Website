@@ -1,6 +1,7 @@
 import "./Nav.css";
 import { MdShoppingCart } from "react-icons/md";
 import { useEffect } from "react";
+import { IconContext } from "react-icons";
 import { Link } from "react-router-dom";
 import { useSelector, useDispatch } from "react-redux";
 import { GetCart } from "../../store/actions/Cart";
@@ -20,52 +21,59 @@ const Nav = () => {
 
     return (
         <div className="nav">
-            <Link to="/">
-                <div className="header">iRock.ng</div>
-            </Link>
-
-            <div className="search">
-                <input type="text" className="searchInput" />
-
-                <input type="button" value="search" className="searchBtn" />
-            </div>
-
-            <div id="logANDregisterBTN">
-                {!userId && (
-                    <Link to="/login">
-                        <button id="login" className="userbtn">
-                            Login
-                        </button>
-                    </Link>
-                )}
-                {!userId && (
-                    <Link to="/register">
-                        <button id="register" className="userbtn">
-                            Register
-                        </button>
-                    </Link>
-                )}
-                {userId && (
-                    <button
-                        id="logOut"
-                        className="userbtn"
-                        onClick={() => logUserOut()}
-                    >
-                        LoggOut
-                    </button>
-                )}
-            </div>
-
-            {userId && (
-                <Link to="/cart">
-                    <h1 id="CartIcon">
-                        <MdShoppingCart />
-                        {theCount
-                            ? theCount > 0 && <span>{theCount}</span>
-                            : null}
-                    </h1>
+            <IconContext.Provider
+                value={{
+                    color: "dodgerblue",
+                    size: "20px",
+                }}
+            >
+                <Link to="/">
+                    <div className="header">Amrock.cm</div>
                 </Link>
-            )}
+
+                <div className="search">
+                    <input type="text" className="searchInput" />
+
+                    <input type="button" value="search" className="searchBtn" />
+                </div>
+
+                <div id="logANDregisterBTN">
+                    {!userId && (
+                        <Link to="/login">
+                            <button id="login" className="userbtn">
+                                Login
+                            </button>
+                        </Link>
+                    )}
+                    {!userId && (
+                        <Link to="/register">
+                            <button id="register" className="userbtn">
+                                Register
+                            </button>
+                        </Link>
+                    )}
+                    {userId && (
+                        <button
+                            id="logOut"
+                            className="userbtn"
+                            onClick={() => logUserOut()}
+                        >
+                            LoggOut
+                        </button>
+                    )}
+                </div>
+
+                {userId && (
+                    <Link to="/cart">
+                        <h1 id="CartIcon">
+                            <MdShoppingCart />
+                            {theCount
+                                ? theCount > 0 && <span>{theCount}</span>
+                                : null}
+                        </h1>
+                    </Link>
+                )}
+            </IconContext.Provider>
         </div>
     );
 };
