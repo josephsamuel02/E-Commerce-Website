@@ -9,6 +9,7 @@ import {
     BsPeople,
     BsShopWindow,
     BsPersonBadge,
+    BsBoxArrowInLeft,
 } from "react-icons/bs";
 const Nav = () => {
     return (
@@ -34,7 +35,6 @@ const Nav = () => {
                         </div>
                     </Link>
                     <Link to={"/analytics"}>
-                        {" "}
                         <div className="navitem">
                             <p>
                                 <BsGraphUp />
@@ -45,7 +45,6 @@ const Nav = () => {
                     <br />
                     <Link to={"/orders"}>
                         <div className="navitem">
-                            {" "}
                             <p>
                                 <BsCart />
                             </p>
@@ -53,9 +52,7 @@ const Nav = () => {
                         </div>
                     </Link>
                     <Link to={"/products"}>
-                        {" "}
                         <div className="navitem">
-                            {" "}
                             <p>
                                 <BsCollection />
                             </p>
@@ -64,9 +61,7 @@ const Nav = () => {
                     </Link>
                     <br /> <h5 className="dashboard">Quick Menue</h5>
                     <Link to={"/userslist"}>
-                        {" "}
                         <div className="navitem">
-                            {" "}
                             <p>
                                 <BsPeople />
                             </p>
@@ -74,9 +69,7 @@ const Nav = () => {
                         </div>
                     </Link>
                     <Link to={"/shops"}>
-                        {" "}
                         <div className="navitem">
-                            {" "}
                             <p>
                                 <BsShopWindow />
                             </p>
@@ -85,13 +78,19 @@ const Nav = () => {
                     </Link>
                     <br />
                     <Link to={"/staffs"}>
-                        {" "}
                         <div className="navitem">
-                            {" "}
                             <p>
                                 <BsPersonBadge />
                             </p>
-                            <p>Staffs</p>
+                            <p>Staff</p>
+                        </div>
+                    </Link>
+                    <Link to={"/logout"}>
+                        <div className="navitem">
+                            <p>
+                                <BsBoxArrowInLeft />
+                            </p>
+                            <p>Log Out</p>
                         </div>
                     </Link>
                 </div>

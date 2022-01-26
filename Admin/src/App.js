@@ -16,9 +16,10 @@ import Login from "./components/Login/Login";
 import SingleOrder from "./components/Orders/SingleOrder";
 import OrdersList from "./components/Orders/OrdersList";
 import Products from "./components/Products/Products";
+import ProductsList from "./components/Products/ProductsList";
 import SingleProduct from "./components/Products/SingleProduct";
 import Analytics from "./components/Analytics/Analytics";
-
+import Shops from "./components/Shops/Shops";
 const App = () => {
     const theuser = useSelector((state) => state.LogIn.username);
     // var user = "Guest";
@@ -45,13 +46,20 @@ const App = () => {
 
                     <Route path="/orders" element={<OrdersList />} />
 
-                    {/* <Route path="/user" element={<User />} />
+                    <Route path="/products" element={<Products />} />
+
+                    <Route path="/productslist" element={<ProductsList />} />
 
                     <Route path="/userslist" element={<UsersList />} />
 
+                    <Route path="/shops" element={<Shops />} />
+
+                    {/* <Route path="/user" element={<User />} />
+
+                 
+
                     <Route path="/singleorder" element={<SingleOrder />} />
 
-                    <Route path="/products" element={<Products />} />
                   
                   <Route path="/singleproduct" element={<SingleProduct />} /> */}
                 </Routes>
