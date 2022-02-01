@@ -28,7 +28,7 @@ const Nav = () => {
                 }}
             >
                 <Link to="/">
-                    <div className="header">Amrock.cm</div>
+                    <div className="header">Amrock.com</div>
                 </Link>
 
                 <div className="search">

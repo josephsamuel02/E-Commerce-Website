@@ -13,7 +13,7 @@ import { LogIn, RegisterUser } from "./User";
 import { VerifyPayment } from "./Paystack";
 
 import { SendOrder, GetOrders } from "./Order";
-
+import { incomeStats } from "./Stats";
 export const rootReducer = combineReducers({
     Products,
     SingleProduct,
@@ -28,4 +28,5 @@ export const rootReducer = combineReducers({
     VerifyPayment,
     SendOrder,
     GetOrders,
+    incomeStats,
 });

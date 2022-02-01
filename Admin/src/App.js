@@ -46,22 +46,19 @@ const App = () => {
 
                     <Route path="/orders" element={<OrdersList />} />
 
+                    <Route path="/order" element={<SingleOrder />} />
+
                     <Route path="/products" element={<Products />} />
 
                     <Route path="/productslist" element={<ProductsList />} />
+
+                    <Route path="/product" element={<SingleProduct />} />
 
                     <Route path="/userslist" element={<UsersList />} />
 
                     <Route path="/shops" element={<Shops />} />
 
-                    {/* <Route path="/user" element={<User />} />
-
-                 
-
-                    <Route path="/singleorder" element={<SingleOrder />} />
-
-                  
-                  <Route path="/singleproduct" element={<SingleProduct />} /> */}
+                    {/* <Route path="/user" element={<User />} />*/}
                 </Routes>
             </Router>
         </div>

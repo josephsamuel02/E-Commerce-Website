@@ -17,7 +17,7 @@ const CategoryList = () => {
     const search = useLocation().search;
     const category = new URLSearchParams(search).get("category");
 
-    //GET MORE STAFF PROFILES
+    //GET MORE PRODUCTS PROFILES
     // const getmore = () => {
     //     let page = theProducts.page + 1;
 

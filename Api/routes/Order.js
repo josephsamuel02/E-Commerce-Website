@@ -10,13 +10,17 @@ const Order = require("../models/Order");
 router.get("/income", verifyTokenAndAdmin, async (req, res) => {
     const date = new Date();
     const lastMonth = new Date(date.setMonth(date.getMonth() - 1));
+
+    const thisYear = new Date(date.setFullYear(date.getFullYear()));
+
+    const months = new Date(thisYear.setMonth(date.getMonth()));
     const previousMonth = new Date(
         new Date().setMonth(lastMonth.getMonth() - 1)
     );
 
     try {
         const income = await Order.aggregate([
-            { $match: { createdAt: { $gte: previousMonth } } },
+            { $match: { createdAt: { $gte: months } } },
 
             {
                 $project: {
@@ -29,6 +33,9 @@ router.get("/income", verifyTokenAndAdmin, async (req, res) => {
                     _id: "$month",
                     total: { $sum: "$sales" },
                 },
+            },
+            {
+                $sort: { _id: 1 },
             },
         ]);
         res.status(200).json(income);

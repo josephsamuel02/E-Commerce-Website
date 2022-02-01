@@ -1,14 +1,27 @@
 import "./HomePage.css";
+
+import { Link } from "react-router-dom";
+import { useEffect, useState } from "react";
+import { useDispatch, useSelector } from "react-redux";
+import { GetOrders } from "../../store/actions/Order";
+import { format } from "timeago.js";
+
 import Chart from "./Chart";
 import MobileSideNav from "../Nav/MobileSideNav";
-import { useState } from "react";
 import { MdOutlineNavigateNext } from "react-icons/md";
 
 const HomePage = () => {
+    const userId = useSelector((state) => state.LogIn._id);
+    const Orders = useSelector((state) => state.GetOrders);
+    const dispatch = useDispatch();
+
     const [showSideNav, setShowSideNav] = useState(false);
+
+    useEffect(() => dispatch(GetOrders(userId)), [dispatch]);
     return (
         <div className="homepage">
             {showSideNav && <MobileSideNav />}
+
             <h4 className="showsidenav" onClick={() => setShowSideNav(true)}>
                 <MdOutlineNavigateNext />
             </h4>
@@ -21,107 +34,36 @@ const HomePage = () => {
             <div className="newOrders">
                 <h5>New Orders</h5>
                 <ul>
-                    <li>
-                        <p>User Name</p>
-                        <p>Order Id</p>
-                        <p>Price</p>
-                    </li>
-                    <li>
-                        <p>User Name</p>
-                        <p>Order Id</p>
-                        <p>Price</p>
-                    </li>
-                    <li>
-                        <p>User Name</p>
-                        <p>Order Id</p>
-                        <p>Price</p>
-                    </li>
-                    <li>
-                        <p>User Name</p>
-                        <p>Order Id</p>
-                        <p>Price</p>
-                    </li>
-                    <li>
-                        <p>User Name</p>
-                        <p>Order Id</p>
-                        <p>Price</p>
-                    </li>
-                    <li>
-                        <p>User Name</p>
-                        <p>Order Id</p>
-                        <p>Price</p>
-                    </li>
-                    <li>
-                        <p>User Name</p>
-                        <p>Order Id</p>
-                        <p>Price</p>
-                    </li>
-                    <li>
-                        <p>User Name</p>
-                        <p>Order Id</p>
-                        <p>Price</p>
-                    </li>
-                    <li>
-                        <p>User Name</p>
-                        <p>Order Id</p>
-                        <p>Price</p>
-                    </li>
-                    <li>
-                        <p>User Name</p>
-                        <p>Order Id</p>
-                        <p>Price</p>
-                    </li>
-                    <li>
-                        <p>End</p>
-                    </li>
+                    {Orders &&
+                        Orders.map((i) => (
+                            <t key={i.userId}>
+                                {i.status == "Pending" && (
+                                    <li>
+                                        <p>{i.username}</p>
+                                        <p>{format(i.createdAt)}</p>
+                                        <p>{i.status}</p>
+                                    </li>
+                                )}
+                            </t>
+                        ))}
                 </ul>
             </div>
+
             <div className="procesingOrders">
-                <h5> Orders Status</h5>
+                <h5> Waiting Delevery</h5>
                 <ul>
-                    <li>
-                        <p>User Name</p>
-                        <p>Order Id</p>
-                        <p>status</p>
-                    </li>
-                    <li>
-                        <p>User Name</p>
-                        <p>Order Id</p>
-                        <p>status</p>
-                    </li>{" "}
-                    <li>
-                        <p>User Name</p>
-                        <p>Order Id</p>
-                        <p>status</p>
-                    </li>
-                    <li>
-                        <p>User Name</p>
-                        <p>Order Id</p>
-                        <p>status</p>
-                    </li>
-                    <li>
-                        <p>User Name</p>
-                        <p>Order Id</p>
-                        <p>status</p>
-                    </li>
-                    <li>
-                        <p>User Name</p>
-                        <p>Order Id</p>
-                        <p>status</p>
-                    </li>{" "}
-                    <li>
-                        <p>User Name</p>
-                        <p>Order Id</p>
-                        <p>status</p>
-                    </li>
-                    <li>
-                        <p>User Name</p>
-                        <p>Order Id</p>
-                        <p>status</p>
-                    </li>
-                    <li>
-                        <p>End</p>
-                    </li>
+                    {Orders &&
+                        Orders.map((i) => (
+                            <t key={i.userId}>
+                                {i.status != "Pending" && (
+                                    <li>
+                                        <p>{i.username}</p>
+                                        <p>{format(i.createdAt)}</p>
+                                        <p>{i.status}</p>
+                                    </li>
+                                )}
+                            </t>
+                        ))}
                 </ul>
             </div>
         </div>

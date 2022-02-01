@@ -10,15 +10,13 @@ a {
     .orderslist {
         margin: 0px;
         padding: 5px;
-        width: auto;
-        height: auto;
+        max-width: 100%;
+        max-height: 100%;
         position: fixed;
         top: 0px;
         bottom: 0px;
         left: 27%;
         right: 0px;
-
-        overflow: scroll;
     }
     .orderheader {
         margin: 10px 10px 20px;
@@ -65,17 +63,35 @@ a {
     .orderbox {
         margin: 5px;
         padding: 10px;
-
+        max-height: 83%;
+        max-width: 100%;
         display: flex;
+        flex-direction: row;
         flex-wrap: wrap;
+        overflow: scroll;
 
         box-shadow: 1px 1px 2px 1px rgba(184, 184, 187, 0.575),
             -1px -1px 2px 1px rgba(184, 184, 187, 0.575);
         border-radius: 30px;
     }
 
+    .completed {
+        max-height: 100%;
+        overflow: scroll;
+    }
+
+    .processing {
+        height: 91%;
+        overflow: scroll;
+    }
+
+    .neworders {
+        height: 98%;
+        overflow: scroll;
+    }
+
     .orderbox .ordercard {
-        margin: 15px auto;
+        margin: 15px 10px;
         padding: 5px;
         height: 160px;
         width: 240px;
@@ -115,7 +131,7 @@ a {
         padding: 0px;
         font-size: 15px;
         font-family: sans-serif;
-        font-weight: lighter;
+        font-weight: ;
     }
 
     .ordercard .detail ul {
@@ -125,16 +141,15 @@ a {
         max-width: 100%;
         height: 65%;
         display: block;
-
-        overflow: hidden;
     }
 
     .detail ul li {
         margin: 1px;
-        padding: 2px 4px;
+        padding: 3px 4px;
 
-        font-size: 12px;
+        font-size: 13px;
         font-family: sans-serif;
+        color: black;
     }
 
     .ordercard .detail .stats {
@@ -147,6 +162,7 @@ a {
     .ordercard .detail span {
         margin: 0px 5px;
         padding: 0px;
+        color: white;
     }
     .detail .stats p {
         margin: 0px auto;
