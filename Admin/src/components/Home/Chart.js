@@ -39,17 +39,11 @@ const Chart = () => {
     useEffect(() => {
         income &&
             setTimeout(() => {
-                console.log(income);
-
                 income.map((i) => setIncomeValue((prv) => [...prv, i.total]));
             }, 4000);
     }, [income]);
 
     useEffect(() => {
-        setTimeout(() => {
-            console.log(incomeValue);
-        }, 3000);
-
         //set the data
         setTimeout(() => {
             setData({

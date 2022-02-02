@@ -1,5 +1,5 @@
 import { combineReducers } from "redux";
-import { Products } from "./Products";
+import { Products, CreateProduct } from "./Products";
 import { SingleProduct } from "./SingleProduct";
 import { HomeProducts } from "./HomeProducts";
 import {
@@ -9,10 +9,9 @@ import {
     DeleteCart,
     CartSumTotal,
 } from "./Cart";
-import { LogIn, RegisterUser } from "./User";
-import { VerifyPayment } from "./Paystack";
+import { LogIn, RegisterUser, GetUsers } from "./User";
 
-import { SendOrder, GetOrders } from "./Order";
+import { GetOrders } from "./Order";
 import { incomeStats } from "./Stats";
 export const rootReducer = combineReducers({
     Products,
@@ -25,8 +24,8 @@ export const rootReducer = combineReducers({
     CartSumTotal,
     LogIn,
     RegisterUser,
-    VerifyPayment,
-    SendOrder,
     GetOrders,
     incomeStats,
+    GetUsers,
+    CreateProduct,
 });

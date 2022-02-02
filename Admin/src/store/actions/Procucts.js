@@ -35,3 +35,33 @@ export const Products = (
 
     // payload: productsItem,
 });
+
+// CREATE NEW PRODUCT
+
+const createProduct = async (product) => {
+    try {
+        const response = await axios.post(
+            "http://localhost:8000/products",
+            product,
+            {
+                headers: {
+                    token: `Bearer ${
+                        JSON.parse(
+                            JSON.parse(localStorage.getItem("persist:root"))
+                                .LogIn
+                        ).accesstoken
+                    }`,
+                },
+            }
+        );
+        return response.data;
+    } catch (err) {
+        throw err;
+    }
+};
+
+export const CreateProduct = (product) => ({
+    type: "CREATE_PRODUCT",
+
+    payload: createProduct(product),
+});

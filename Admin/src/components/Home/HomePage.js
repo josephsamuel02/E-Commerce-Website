@@ -54,7 +54,7 @@ const HomePage = () => {
                 <ul>
                     {Orders &&
                         Orders.map((i) => (
-                            <t key={i.userId}>
+                            <div key={i.userId}>
                                 {i.status != "Pending" && (
                                     <li>
                                         <p>{i.username}</p>
@@ -62,7 +62,7 @@ const HomePage = () => {
                                         <p>{i.status}</p>
                                     </li>
                                 )}
-                            </t>
+                            </div>
                         ))}
                 </ul>
             </div>

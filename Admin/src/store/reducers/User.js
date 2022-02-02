@@ -17,3 +17,13 @@ export const RegisterUser = (state = [], action) => {
             return state;
     }
 };
+
+export const GetUsers = (state = [], action) => {
+    switch (action.type) {
+        case "GET_USERS":
+            return action.payload;
+
+        default:
+            return state;
+    }
+};
