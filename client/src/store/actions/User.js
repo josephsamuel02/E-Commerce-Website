@@ -9,7 +9,6 @@ import axios from "axios";
 export const userId = "Guest";
 
 const login = async (userin) => {
-    let date = new Date().toLocaleTimeString();
     try {
         const response = await axios.post(
             "http://localhost:8000/auth/login",

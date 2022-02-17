@@ -12,7 +12,7 @@
         top: 0px;
         left: 0px;
         right: 0px;
-
+        max-width: 100%;
         height: 50px;
         display: flex;
 
@@ -23,8 +23,8 @@
     }
 
     .header {
-        margin: 11px auto;
-        padding: 2px;
+        margin: 11px 9px;
+        padding: 1px;
 
         font-family: "Oswald", sans-serif;
         font-size: 18px;
@@ -36,7 +36,7 @@
     .search {
         margin: auto;
         padding: 3px;
-        width: 140px;
+        width: 150px;
         display: flex;
         flex-direction: row;
     }
@@ -46,27 +46,27 @@
         padding: 1px;
         outline: none;
         border: solid 1px rgba(188, 188, 189, 0.644);
-
         border-radius: 30px 0px 0px 30px;
-        height: 13px;
+        height: 15px;
         width: 90px;
         font-family: sans-serif;
-        font-weight: ;
-        font-size: 11px;
+        font-weight: bold;
+        font-size: 12px;
         color: rgb(65, 62, 62);
     }
 
     .searchBtn {
         margin: 0px;
-        padding: 0px;
+        padding: 2px;
         outline: none;
         border: solid 1px gray;
         border-radius: 0px 30px 30px 0px;
         height: 17px;
-        width: auto;
+        width: 50px;
+        text-align: center;
         font-family: sans-serif;
         font-weight: lighter;
-        font-size: 12px;
+        font-size: 11px;
         color: white;
         background-color: tomato;
     }
